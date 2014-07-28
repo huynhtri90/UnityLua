@@ -34,7 +34,7 @@ public class TestLua : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		GameObject labelas = GameObject.Find ("Label1");
+		// GameObject labelas = GameObject.Find ("Label1");
 		GameObject label1 = this.transform.FindChild("Label1").gameObject;
 		label1.AddComponent<TestClick>();
 
