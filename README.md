@@ -17,3 +17,14 @@
 
     UIEventListener.Get(label3).onClick = OnClick;
 
+
+#文件说明#
+    src
+        桥接源代码
+    lua-5.1.5
+        lua源代码
+    example
+        unity lua使用示例
+
+#构建说明#
+Plugins中的二进制可以自己构建，工程文件在/lua-5.1.5中，如/lua-5.1.5/proj.win为构建windows的dll
