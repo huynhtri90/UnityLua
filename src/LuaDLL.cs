@@ -75,7 +75,7 @@ namespace LuaInterface
 #if UNITY_IPHONE
         const string LUADLL = "__Internal";
 #else
-        const string LUADLL = "ulua";
+        const string LUADLL = "lua";
 #endif
 
         // Thread Funcs
