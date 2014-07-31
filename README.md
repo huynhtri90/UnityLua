@@ -38,6 +38,8 @@ unilua 略显鸡肋，不评价了。
 ## Plugins构建 ##
 Plugins中的二进制文件可以自己构建，工程文件在/lua-5.1.5中，如/lua-5.1.5/proj.win可以构建出lua.dll。
 
+**注意：** android的NDK一定要选择 Platform(32-bit target)
+
 
 # ToDo #
 1. 根据开发需要，调整部分资源加载部分的代码

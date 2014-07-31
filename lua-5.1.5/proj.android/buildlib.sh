@@ -1,6 +1,2 @@
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-NDK_PROJECT_PATH="$DIR"
-
-echo "NDK_PROJECT_PATH=$NDK_PROJECT_PATH"
-
-ndk-build NDK_PROJECT_PATH="$NDK_PROJECT_PATH"
+#!/bin/sh
+ndk-build NDK_PROJECT_PATH=. NDK_APPLICATION_MK=Application.mk $*
