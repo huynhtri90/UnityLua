@@ -2,8 +2,9 @@
 Add lua scripting capability into unity, so that game can be updated without re-packaging.
 
 # Comparison: #
-There are 3 commonly used unity lua libraries:
+There are 4 commonly used unity lua libraries:
 
+- luainterface: old
 - ulua: based on luainterface
 - nlua: cross-platform version writen by luainterface author
 - unilua: compatible with lua5.2, writen in c#
@@ -12,7 +13,7 @@ Concerning to bridging c#, nlua is the best, which adds special support for ios.
 
 Unilua isn't very useful, so I won't comment on it.
 
-To sum up, I choose ulua, and adds nlua capabilities on ios. For example, to support:
+To sum up, I choose luainterface, and adds nlua capabilities on ios. For example, to support:
 
     UIEventListener.Get(label3).onClick = OnClick;
 
@@ -22,8 +23,6 @@ Here are the reasons:
 1. To be honest, I prefer nlua. But I don't have much time to make nlua work on unity.
 
 # Remarks: #
-    src
-    	Sources of the bridging
     lua-5.1.5
     	Sources of lua
     example:
@@ -45,8 +44,9 @@ Todo
 为unity引入lua支持，解决“中国特色”的游戏自更新问题。
 
 # 对比 #
-目前常见的三种unity lua库，ulua，nlua，unilua：
+目前常见的四种unity lua库，luainterface，ulua，nlua，unilua：
 
+- luainterface: C#的lua桥接库
 - ulua是luainterface增加了对unity的支持
 - nlua是luainterface的作者为了跨平台，而写的升级版
 - unilua是lua5.2的C#版
@@ -56,7 +56,7 @@ Todo
 
 unilua 略显鸡肋，不评价了。
 
-综合而言，我选择使用ulua，并为其引入nlua对ios平台的特殊处理，如支持了如下代码：
+综合而言，我选择使用luainterface，并为其引入nlua对ios平台的特殊处理，如支持了如下代码：
 
     UIEventListener.Get(label3).onClick = OnClick;
 
@@ -67,15 +67,13 @@ unilua 略显鸡肋，不评价了。
 
 # 说明 #
 
-    src
-        桥接源代码
     lua-5.1.5
         lua源代码
     example
         unity lua使用示例
 
 ## 使用方法 ##
-1. 将example/Assets/Thirdparty/unitylua 拷贝到你的工程中。
+1. 将example/Assets/unitylua 拷贝到你的工程中。
 2. 将example/Assets/Plugins拷贝到你的工程的Assets/Plugins中
 
 ## Plugins构建 ##
