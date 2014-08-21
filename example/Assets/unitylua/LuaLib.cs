@@ -73,7 +73,7 @@ namespace LuaInterface
 	{
         internal static int LUA_MULTRET = -1;
 #if UNITY_IPHONE
-		internal const string LUADLL = "__Internal";
+		internal const string LIBNAME = "__Internal";
 #else
 		internal const string LIBNAME = "lua";
 #endif
