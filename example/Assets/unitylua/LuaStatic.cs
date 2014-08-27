@@ -51,9 +51,8 @@ namespace LuaInterface
 				}
 				
 				LuaLib.LuaPop(L, 1);  /* pop result */
-				
-				Debug.Log("LUA: " + s);
 			}
+			Debug.Log("LUA: " + s);
 			return 0;
 		}
 		
@@ -73,7 +72,7 @@ namespace LuaInterface
 				return 0;
 			}
 			
-			LuaLib.LuaL_LoadBuffer(L, file.bytes, file.bytes.Length, fileName);
+			LuaLib.LuaL_LoadBuffer(L, file.text, file.bytes.Length, fileName);
 			
 			return 1;
 		}

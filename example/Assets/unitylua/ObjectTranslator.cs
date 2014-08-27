@@ -294,10 +294,10 @@ namespace LuaInterface
 		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 		public static int registerTable(IntPtr luaState)
         {
+			ObjectTranslator translator = ObjectTranslator.FromState(luaState);
 #if UNITY_IPHONE
-			throwError(luaState,"Tables as Objects not implemnented");
-#else
-            ObjectTranslator translator = ObjectTranslator.FromState(luaState);
+			translator.throwError(luaState,"Tables as Objects not implemnented");
+#else            
 			if(LuaLib.LuaType(luaState,1)==LuaTypes.LUA_TTABLE)
 			{
 				LuaTable luaTable=translator.getTable(luaState,1);
