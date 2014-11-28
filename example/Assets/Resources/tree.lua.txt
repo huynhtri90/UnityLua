@@ -1,39 +1,4 @@
-﻿
-
-function Tree(var, depth)
-
-	local treeData =
-	{
-		tableVisit = {},
-		thisPath = "*",
-		Output = function (self, textLine)
-            Log(textLine);
-		end
-	};
-
-    Log("*");
-
-	Show(treeData, var, nil, depth);
-end
-
-function PrintTree(var, depth)
-
-	local treeData =
-	{
-		tableVisit = {},
-		thisPath = "*",
-		Output = function (self, textLine)
-            print(textLine);
-		end
-	};
-
-    print("*");
-
-	Show(treeData, var, nil, depth);
-end
-
-
-function VarText(treeData, var)
+﻿local function VarText(treeData, var)
 	local varType = type(var);
 	local text = "";
 
@@ -61,7 +26,7 @@ function VarText(treeData, var)
 	return text;
 end
 
-function Show(treeData, var, szBase, depth)
+local function Show(treeData, var, szBase, depth)
 	if depth and depth <= 0 then
 		return;
 	end
@@ -124,32 +89,40 @@ function Show(treeData, var, szBase, depth)
 	end	
 end
 
---------测试数据--------
---Log("_G");
---Tree(_G);
+local Lib = {};
 
-player =
-{
-    name = "张三",
-    id = 123,
-    version = 1000,
-    last_login_ip = "172.16.11.152",
-    last_login_time = os.time(),
-    data = {},
-    login = function()
-    	print("");
-    end
-}
+function Lib.CreatePrintTree(fnPrint)
+	return function (var, depth)
+		local treeData =
+		{
+			tableVisit = {},
+			thisPath = "*",
+			Output = function (self, textLine)
+	            fnPrint(textLine);
+			end
+		};
 
-card1 = {id = "00_17_55_7f", level = 3, template = 100, owner = player};
-card2 = {id = "75_82_35_1e", level = 1, template = 17};
-card3 = {id = "97_21_30_7f", level = 2, template = 99};
+	    fnPrint("*");
+		Show(treeData, var, nil, depth);
+	end
+end
 
-player.data.cards = {card1, card2, card1};
+function Lib.StringTree(var, depth)
+	local str = "";
 
-count = count or 1;
---print("--------------------------"..count.."------------------------------");
-count = count + 1;
+	local treeData =
+	{
+		tableVisit = {},
+		thisPath = "*",
+		Output = function (self, textLine)
+			str = str .. "\n" .. textLine;
+		end
+	};
 
---Log("player");
---Tree(player);
+	str = "*";
+	Show(treeData, var, nil, depth);
+	
+    return str;
+end
+
+return Lib;
