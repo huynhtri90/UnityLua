@@ -37,8 +37,10 @@
 		44FBC55D198633EF00965453 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 44FBC53B198633EF00965453 /* lundump.c */; };
 		44FBC55E198633EF00965453 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 44FBC53D198633EF00965453 /* lvm.c */; };
 		44FBC55F198633EF00965453 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 44FBC53F198633EF00965453 /* lzio.c */; };
-		44FBC560198633EF00965453 /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = 44FBC541198633EF00965453 /* print.c */; };
 		44FBC5621986346100965453 /* libc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBC5611986346100965453 /* libc.dylib */; };
+		8716B7DE1A88AC1900419D68 /* lbitlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8716B7DA1A88AC1900419D68 /* lbitlib.c */; };
+		8716B7DF1A88AC1900419D68 /* lcorolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8716B7DB1A88AC1900419D68 /* lcorolib.c */; };
+		8716B7E01A88AC1900419D68 /* lctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 8716B7DC1A88AC1900419D68 /* lctype.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -109,8 +111,12 @@
 		44FBC53E198633EF00965453 /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lvm.h; path = ../src/lvm.h; sourceTree = "<group>"; };
 		44FBC53F198633EF00965453 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lzio.c; path = ../src/lzio.c; sourceTree = "<group>"; };
 		44FBC540198633EF00965453 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzio.h; path = ../src/lzio.h; sourceTree = "<group>"; };
-		44FBC541198633EF00965453 /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = print.c; path = ../src/print.c; sourceTree = "<group>"; };
 		44FBC5611986346100965453 /* libc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libc.dylib; path = usr/lib/libc.dylib; sourceTree = SDKROOT; };
+		8716B7D91A88AC1900419D68 /* lctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lctype.h; path = ../src/lctype.h; sourceTree = "<group>"; };
+		8716B7DA1A88AC1900419D68 /* lbitlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lbitlib.c; path = ../src/lbitlib.c; sourceTree = "<group>"; };
+		8716B7DB1A88AC1900419D68 /* lcorolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lcorolib.c; path = ../src/lcorolib.c; sourceTree = "<group>"; };
+		8716B7DC1A88AC1900419D68 /* lctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lctype.c; path = ../src/lctype.c; sourceTree = "<group>"; };
+		8716B7DD1A88AC1900419D68 /* lua.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua.hpp; path = ../src/lua.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,11 @@
 		44FBC50A198633C900965453 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				8716B7D91A88AC1900419D68 /* lctype.h */,
+				8716B7DA1A88AC1900419D68 /* lbitlib.c */,
+				8716B7DB1A88AC1900419D68 /* lcorolib.c */,
+				8716B7DC1A88AC1900419D68 /* lctype.c */,
+				8716B7DD1A88AC1900419D68 /* lua.hpp */,
 				44FBC50B198633EF00965453 /* lapi.c */,
 				44FBC50C198633EF00965453 /* lapi.h */,
 				44FBC50D198633EF00965453 /* lauxlib.c */,
@@ -207,7 +218,6 @@
 				44FBC53E198633EF00965453 /* lvm.h */,
 				44FBC53F198633EF00965453 /* lzio.c */,
 				44FBC540198633EF00965453 /* lzio.h */,
-				44FBC541198633EF00965453 /* print.c */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -264,7 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				44FBC54E198633EF00965453 /* llex.c in Sources */,
-				44FBC560198633EF00965453 /* print.c in Sources */,
 				44FBC54D198633EF00965453 /* liolib.c in Sources */,
 				44FBC54A198633EF00965453 /* lfunc.c in Sources */,
 				44FBC542198633EF00965453 /* lapi.c in Sources */,
@@ -274,12 +283,15 @@
 				44FBC543198633EF00965453 /* lauxlib.c in Sources */,
 				44FBC55D198633EF00965453 /* lundump.c in Sources */,
 				44FBC549198633EF00965453 /* ldump.c in Sources */,
+				8716B7E01A88AC1900419D68 /* lctype.c in Sources */,
 				44FBC55B198633EF00965453 /* ltablib.c in Sources */,
 				44FBC548198633EF00965453 /* ldo.c in Sources */,
 				44FBC552198633EF00965453 /* loadlib.c in Sources */,
 				44FBC544198633EF00965453 /* lbaselib.c in Sources */,
 				44FBC54C198633EF00965453 /* linit.c in Sources */,
 				44FBC551198633EF00965453 /* lnet.c in Sources */,
+				8716B7DE1A88AC1900419D68 /* lbitlib.c in Sources */,
+				8716B7DF1A88AC1900419D68 /* lcorolib.c in Sources */,
 				44FBC550198633EF00965453 /* lmem.c in Sources */,
 				44FBC553198633EF00965453 /* lobject.c in Sources */,
 				44FBC555198633EF00965453 /* loslib.c in Sources */,
