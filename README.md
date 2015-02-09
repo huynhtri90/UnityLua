@@ -13,6 +13,7 @@ Concerning to bridging c#, nlua is the best, which adds special support for ios.
 
 Unilua isn't very useful, so I won't comment on it.
 
+# First version(2014.7) #
 To sum up, I choose luainterface, and adds nlua capabilities on ios. For example, to support:
 
     UIEventListener.Get(label3).onClick = OnClick;
@@ -22,14 +23,18 @@ Here are the reasons:
 1. Most of China's companies use ulua. So ulua is unlikely to have fatal bugs.
 1. To be honest, I prefer nlua. But I don't have much time to make nlua work on unity.
 
+# Second version(2015.2) #
+
+....
+
 # Remarks: #
-    lua-5.1.5
+    lua
     	Sources of lua
     example:
     	Examples to show how to use lua on unity
 	
 ## Building Plugings ##
-The binaries in Plugings can be built from source. The solution files are in lua-5.1.5. For example, lua.dll can be built using /lua-5.1.5/proj.win
+The binaries in Plugings can be built from source. The solution files are in lua. For example, lua.dll can be built using /lua/proj.win
 
 Note: android NDK must be Platform(32-bit target)
 
@@ -56,7 +61,9 @@ Todo
 
 unilua 略显鸡肋，不评价了。
 
-综合而言，我选择使用luainterface，并为其引入nlua对ios平台的特殊处理，如支持了如下代码：
+# 第一版本（2014.7） #
+
+选择使用luainterface，并为其引入nlua对ios平台的特殊处理，如支持了如下代码：
 
     UIEventListener.Get(label3).onClick = OnClick;
 
@@ -65,9 +72,17 @@ unilua 略显鸡肋，不评价了。
 1. 国内大部分的公司采用了ulua，其应当没有明显bug
 1. 我更倾向于使用nlua，但工作紧，无法投入时间去做nlua的unity支持
 
+# 第二版本（2015.2） #
+
+选择使用 nlua+KeraLua，做了以下修改
+1. 增加unity支持
+1. 删除对KopiLua的支持
+1. 删除动态创建程序集的代码
+1. 删除多平台的代码
+
 # 说明 #
 
-    lua-5.1.5
+    lua
         lua源代码
     example
         unity lua使用示例
@@ -77,12 +92,6 @@ unilua 略显鸡肋，不评价了。
 2. 将example/Assets/Plugins拷贝到你的工程的Assets/Plugins中
 
 ## Plugins构建 ##
-Plugins中的二进制文件可以自己构建，工程文件在/lua-5.1.5中，如/lua-5.1.5/proj.win可以构建出lua.dll。
+Plugins中的二进制文件可以自己构建，工程文件在/lua-5.1.5中，如/lua/proj.win可以构建出lua.dll。
 
 **注意：** android的NDK一定要选择 Platform(32-bit target)
-
-
-# ToDo #
-1. 根据开发需要，调整部分资源加载部分的代码
-1. 代码规范整理，按照nlua的代码规范，重新梳理一遍代码
-1. 将nlua对interface，class的桥接代码移植过来
