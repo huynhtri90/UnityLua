@@ -10,7 +10,7 @@ namespace KeraLua
 	static class NativeMethods
 	{
 	
-#if UNITY_IPHONE
+#if MONOTOUCH
 		const string LIBNAME = "__Internal";
 #else
 /*
