@@ -35,11 +35,11 @@ using NLua.Event;
 using NLua.Method;
 using NLua.Exceptions;
 using NLua.Extensions;
-
-#if UNITY_IPHONE
+/*
+#if MONOTOUCH
 	using ObjCRuntime;
 #endif
-
+*/
 namespace NLua
 {
 	#if USE_KOPILUA
@@ -334,7 +334,7 @@ end
 			}
 		}
 
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		static int PanicCallback (LuaState luaState)
@@ -965,7 +965,7 @@ end
 		/// <param name = "luaState">lua state</param>
 		/// <param name = "luaDebug">Pointer to LuaDebug (lua_debug) structure</param>
 		/// 
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaHook))]
 #endif
 #if USE_KOPILUA

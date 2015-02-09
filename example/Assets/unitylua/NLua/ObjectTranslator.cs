@@ -32,11 +32,11 @@ using System.Collections.Generic;
 using NLua.Method;
 using NLua.Exceptions;
 using NLua.Extensions;
-
-#if UNITY_IPHONE
+/*
+#if MONOTOUCH
 	using ObjCRuntime;
 #endif
-
+*/
 namespace NLua
 {
 	#if USE_KOPILUA
@@ -262,7 +262,7 @@ namespace NLua
 		 * Implementation of load_assembly. Throws an error
 		 * if the assembly is not found.
 		 */
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		private static int LoadAssembly (LuaState luaState)
@@ -349,7 +349,7 @@ namespace NLua
 		 * Implementation of import_type. Returns nil if the
 		 * type is not found.
 		 */
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		private static int ImportType (LuaState luaState)
@@ -376,7 +376,7 @@ namespace NLua
 		 * argument in the stack) as an object subclassing the
 		 * type passed as second argument in the stack.
 		 */
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		private static int RegisterTable (LuaState luaState)
@@ -427,7 +427,7 @@ namespace NLua
 		 * Implementation of free_object. Clears the metatable and the
 		 * base field, freeing the created object for garbage-collection
 		 */
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		private static int UnregisterTable (LuaState luaState)
@@ -471,7 +471,7 @@ namespace NLua
 		 * Implementation of get_method_bysig. Returns nil
 		 * if no matching method is not found.
 		 */
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		private static int GetMethodSignature (LuaState luaState)
@@ -523,7 +523,7 @@ namespace NLua
 		 * Implementation of get_constructor_bysig. Returns nil
 		 * if no matching constructor is found.
 		 */
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		private static int GetConstructorSignature (LuaState luaState)
@@ -830,7 +830,10 @@ namespace NLua
 		internal LuaTable GetTable (LuaState luaState, int index)
 		{
 			LuaLib.LuaPushValue (luaState, index);
-			return new LuaTable (LuaLib.LuaRef (luaState, 1), interpreter);
+			int reference = LuaLib.LuaRef (luaState, 1);
+			if (reference == -1)
+				return null;
+			return new LuaTable (reference, interpreter);
 		}
 
 		/*
@@ -839,7 +842,10 @@ namespace NLua
 		internal LuaUserData GetUserData (LuaState luaState, int index)
 		{
 			LuaLib.LuaPushValue (luaState, index);
-			return new LuaUserData (LuaLib.LuaRef (luaState, 1), interpreter);
+			int reference = LuaLib.LuaRef (luaState, 1);
+			if (reference == -1)
+				return null;
+			return new LuaUserData(reference, interpreter);
 		}
 
 		/*
@@ -848,7 +854,10 @@ namespace NLua
 		internal LuaFunction GetFunction (LuaState luaState, int index)
 		{
 			LuaLib.LuaPushValue (luaState, index);
-			return new LuaFunction (LuaLib.LuaRef (luaState, 1), interpreter);
+			int reference = LuaLib.LuaRef (luaState, 1);
+			if (reference == -1)
+				return null;
+			return new LuaFunction (reference, interpreter);
 		}
 
 		/*
@@ -1001,7 +1010,7 @@ namespace NLua
 			return 2;
 		}
 
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		private static int CType (LuaState luaState)
@@ -1020,7 +1029,7 @@ namespace NLua
 			return 1;
 		}
 
-#if UNITY_IPHONE
+#if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
 #endif
 		private static int EnumFromInt (LuaState luaState)

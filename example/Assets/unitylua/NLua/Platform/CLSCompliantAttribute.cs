@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-
+/*
+#if UNITY_3D
+*/
 namespace NLua {
 	/// <summary>
 	/// Disables CLS Compliance in Unity3D.
@@ -14,3 +16,6 @@ namespace NLua {
 		public bool IsCompliant { get { return _compliant; } }
 	}
 }
+/*
+#endif
+*/

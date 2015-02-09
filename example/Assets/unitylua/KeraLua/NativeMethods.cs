@@ -13,6 +13,20 @@ namespace KeraLua
 #if UNITY_IPHONE
 		const string LIBNAME = "__Internal";
 #else
+/*
+#if DEBUGLUA
+		const string LIBNAME = "lua52d";
+#else
+		const string LIBNAME = "lua52";
+#endif
+
+#if USE_DYNAMIC_DLL_REGISTER
+		static NativeMethods ()
+		{
+			DynamicLibraryPath.RegisterPathForDll (LIBNAME);
+		}
+#endif
+*/
 		const string LIBNAME = "lua";
 #endif
 
