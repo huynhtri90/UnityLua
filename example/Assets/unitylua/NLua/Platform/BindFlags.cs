@@ -1,5 +1,6 @@
 ﻿using System;
 /*
+#if !UNITY_3D
 namespace System.Reflection
 {
 	public enum BindingFlags
@@ -9,4 +10,6 @@ namespace System.Reflection
 		Public = 16,
 	}
 }
+#endif
+
 */
