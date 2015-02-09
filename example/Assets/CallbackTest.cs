@@ -3,14 +3,14 @@ using System.Collections;
 
 public class CallbackTest : MonoBehaviour
 {
-    class LuaBoolDelegateEventArgsHandler : LuaInterface.LuaDelegate
+	class LuaBoolDelegateEventArgsHandler : NLua.Method.LuaDelegate
     {
         bool CallFunction(GameObject go)
         {
             object[] args = new object[] { go };
             object[] inArgs = new object[] { go };
             int[] outArgs = new int[] { };
-            return (bool)base.callFunction(args, inArgs, outArgs);
+            return (bool)base.CallFunction(args, inArgs, outArgs);
         }
     }
 

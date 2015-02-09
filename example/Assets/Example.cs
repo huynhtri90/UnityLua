@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
-using LuaInterface;
+using NLua;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
@@ -75,12 +75,12 @@ namespace X
         /// <summary>
         /// core!
         /// </summary>
-        static LuaState mLuaState;
+        static Lua mLuaState;
 		static LuaFunction mGetFunction;
 
 		static Example()
         {
-            mLuaState = new LuaState();
+			mLuaState = new Lua();
         }
 
 		public static void RegisterLuaDelegateType(Type delegateType, Type luaDelegateType)
