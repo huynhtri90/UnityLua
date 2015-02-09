@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#if defined (WIN32) || defined (WP8)
+#if defined _MSC_VER
 #include <Windows.h>
 #include <string>
 #endif
