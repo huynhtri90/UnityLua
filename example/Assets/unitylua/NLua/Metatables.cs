@@ -32,11 +32,11 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using NLua.Method;
 using NLua.Extensions;
-/*
+
 #if MONOTOUCH
 	using ObjCRuntime;
 #endif
-*/
+
 namespace NLua
 {
 	#if USE_KOPILUA

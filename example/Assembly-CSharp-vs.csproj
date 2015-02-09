@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{EAE89FD7-0765-CA47-B419-144FC99E1698}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\CallbackTest.cs" />
+     <Compile Include="Assets\Example.cs" />
+     <Compile Include="Assets\unitylua\KeraLua\CharPtr.cs" />
+     <Compile Include="Assets\unitylua\KeraLua\DynamicLibraryPath.cs" />
+     <Compile Include="Assets\unitylua\KeraLua\Lua.cs" />
+     <Compile Include="Assets\unitylua\KeraLua\LuaDebug.cs" />
+     <Compile Include="Assets\unitylua\KeraLua\LuaState.cs" />
+     <Compile Include="Assets\unitylua\KeraLua\LuaTag.cs" />
+     <Compile Include="Assets\unitylua\KeraLua\NativeMethods.cs" />
+     <Compile Include="Assets\unitylua\KeraLua\Platform\CLSCompliantAttribute.cs" />
+     <Compile Include="Assets\unitylua\NLua\CheckType.cs" />
+     <Compile Include="Assets\unitylua\NLua\Config\NLuaConfig.cs" />
+     <Compile Include="Assets\unitylua\NLua\Event\DebugHookEventArgs.cs" />
+     <Compile Include="Assets\unitylua\NLua\Event\EventCodes.cs" />
+     <Compile Include="Assets\unitylua\NLua\Event\EventMasks.cs" />
+     <Compile Include="Assets\unitylua\NLua\Event\HookExceptionEventArgs.cs" />
+     <Compile Include="Assets\unitylua\NLua\Exceptions\LuaException.cs" />
+     <Compile Include="Assets\unitylua\NLua\Exceptions\LuaScriptException.cs" />
+     <Compile Include="Assets\unitylua\NLua\Extensions\GeneralExtensions.cs" />
+     <Compile Include="Assets\unitylua\NLua\GenerateEventAssembly\ClassGenerator.cs" />
+     <Compile Include="Assets\unitylua\NLua\GenerateEventAssembly\CodeGeneration.cs" />
+     <Compile Include="Assets\unitylua\NLua\GenerateEventAssembly\DelegateGenerator.cs" />
+     <Compile Include="Assets\unitylua\NLua\GenerateEventAssembly\ILuaGeneratedType.cs" />
+     <Compile Include="Assets\unitylua\NLua\GenerateEventAssembly\LuaClassType.cs" />
+     <Compile Include="Assets\unitylua\NLua\Lua.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaBase.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaFunction.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaGlobalAttribute.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaHideAttribute.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaLib\GCOptions.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaLib\LuaEnums.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaLib\LuaIndexes.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaLib\LuaLib.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaLib\LuaTypes.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaLib\References.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaRegistrationHelper.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaTable.cs" />
+     <Compile Include="Assets\unitylua\NLua\LuaUserData.cs" />
+     <Compile Include="Assets\unitylua\NLua\Metatables.cs" />
+     <Compile Include="Assets\unitylua\NLua\Method\EventHandlerContainer.cs" />
+     <Compile Include="Assets\unitylua\NLua\Method\LuaClassHelper.cs" />
+     <Compile Include="Assets\unitylua\NLua\Method\LuaDelegate.cs" />
+     <Compile Include="Assets\unitylua\NLua\Method\LuaEventHandler.cs" />
+     <Compile Include="Assets\unitylua\NLua\Method\LuaMethodWrapper.cs" />
+     <Compile Include="Assets\unitylua\NLua\Method\MethodArgs.cs" />
+     <Compile Include="Assets\unitylua\NLua\Method\MethodCache.cs" />
+     <Compile Include="Assets\unitylua\NLua\Method\RegisterEventHandler.cs" />
+     <Compile Include="Assets\unitylua\NLua\ObjectTranslator.cs" />
+     <Compile Include="Assets\unitylua\NLua\ObjectTranslatorPool.cs" />
+     <Compile Include="Assets\unitylua\NLua\Platform\BindFlags.cs" />
+     <Compile Include="Assets\unitylua\NLua\Platform\CLSCompliantAttribute.cs" />
+     <Compile Include="Assets\unitylua\NLua\ProxyType.cs" />
+     <None Include="Assets\Resources\lib.lua.txt" />
+     <None Include="Assets\Resources\tree.lua.txt" />
+     <None Include="Assets\Resources\list.lua.txt" />
+     <None Include="Assets\Resources\main.lua.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
