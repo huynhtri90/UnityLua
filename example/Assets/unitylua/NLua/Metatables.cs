@@ -331,14 +331,17 @@ namespace NLua
 		public static void DumpStack (ObjectTranslator translator, LuaState luaState)
 		{
 			int depth = LuaLib.LuaGetTop (luaState);
-
+/*
 #if WINDOWS_PHONE || NETFX_CORE
 			Debug.WriteLine("lua stack depth: {0}", depth);
 #elif UNITY_3D
+*/
 			UnityEngine.Debug.Log(string.Format("lua stack depth: {0}", depth));
+/*
 #elif !SILVERLIGHT
 			Debug.Print ("lua stack depth: {0}", depth);
 #endif
+*/
 
 			for (int i = 1; i <= depth; i++) {
 				var type = LuaLib.LuaType (luaState, i);
