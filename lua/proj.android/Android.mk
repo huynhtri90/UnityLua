@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := lua
-LOCAL_CFLAGS := -Wall -DLUA_COMPAT_ALL -DLUA_USE_LINUX
+LOCAL_CFLAGS := -Wall -DLUA_COMPAT_ALL -DLUA_USE_LINUX -D"getlocaledecpoint()='.'" 
 
 LOCAL_CFLAGS += -Wno-psabi
 LOCAL_EXPORT_CFLAGS += -Wno-psabi

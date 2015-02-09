@@ -362,7 +362,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					LUA_USE_LINUX,
-					"getlocaledecpoint()=\\'.\\'",
+					"\"getlocaledecpoint()='.'\"",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -402,7 +402,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					LUA_USE_LINUX,
-					"getlocaledecpoint()=\\'.\\'",
+					"\"getlocaledecpoint()='.'\"",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

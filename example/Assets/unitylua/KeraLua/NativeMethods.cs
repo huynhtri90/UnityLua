@@ -13,16 +13,7 @@ namespace KeraLua
 #if MONOTOUCH
 		const string LIBNAME = "__Internal";
 #else
-#if DEBUGLUA
-		const string LIBNAME = "lua52";
-#else
-		const string LIBNAME = "lua52";
-#endif
-
-		static NativeMethods ()
-		{
-			DynamicLibraryPath.RegisterPathForDll (LIBNAME);
-		}
+		const string LIBNAME = "lua";
 #endif
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_gc")]
