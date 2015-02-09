@@ -9,7 +9,6 @@
 
 #if defined _MSC_VER
 #include <Windows.h>
-#include <string>
 #endif
 
 #define lua_popglobaltable(L)  \
@@ -214,42 +213,3 @@ LUA_API int luanet_isstring_strict(lua_State *L, int idx) {
 	int t = lua_type(L, idx);
 	return (t == LUA_TSTRING);
 }
-
-// Unicode support functions for Windows
-#if defined(WIN32) || defined (WP8)
-
-// Convert a wide Unicode string to an UTF8 string
-static std::string utf8_encode(const std::wstring &wstr, size_t size_needed)
-{
-	if (size_needed == 0)
-		size_needed = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int) wstr.size(), NULL, 0, NULL, NULL);
-	std::string strTo(size_needed, 0);
-	WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int) wstr.size(), &strTo[0], size_needed, NULL, NULL);
-	return strTo;
-}
-
-// Convert an UTF8 string to a wide Unicode String
-static std::wstring utf8_decode(const std::string &str, size_t size_needed)
-{
-	if (size_needed == 0)
-		size_needed = MultiByteToWideChar(CP_UTF8, 0, &str[0], (int) str.size(), NULL, 0);
-	std::wstring wstrTo(size_needed, 0);
-	MultiByteToWideChar(CP_UTF8, 0, &str[0], (int) str.size(), &wstrTo[0], size_needed);
-	return wstrTo;
-}
-
-LUA_API void luanet_pushlwstring(lua_State *L, const wchar_t *s, size_t len)
-{
-	std::string utf8string(utf8_encode(s, len));
-	lua_pushlstring(L, utf8string.c_str(), len);
-}
-
-LUA_API void luanet_pushwstring(lua_State *L, const wchar_t *s)
-{
-	std::string utf8string(utf8_encode(s, 0));
-	lua_pushstring(L, utf8string.c_str());
-}
-
-#endif
-
-

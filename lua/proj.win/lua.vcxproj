@@ -83,7 +83,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;_CRT_SECURE_NO_WARNINGS;LUA_BUILD_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;_CRT_SECURE_NO_WARNINGS;LUA_BUILD_AS_DLL;getlocaledecpoint()='.';%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -96,7 +96,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;_CRT_SECURE_NO_WARNINGS;LUA_BUILD_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;_CRT_SECURE_NO_WARNINGS;LUA_BUILD_AS_DLL;getlocaledecpoint()='.';%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -111,7 +111,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;getlocaledecpoint()='.';%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -128,7 +128,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;getlocaledecpoint()='.';%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -142,7 +142,10 @@
     <ClCompile Include="..\src\lapi.c" />
     <ClCompile Include="..\src\lauxlib.c" />
     <ClCompile Include="..\src\lbaselib.c" />
+    <ClCompile Include="..\src\lbitlib.c" />
     <ClCompile Include="..\src\lcode.c" />
+    <ClCompile Include="..\src\lcorolib.c" />
+    <ClCompile Include="..\src\lctype.c" />
     <ClCompile Include="..\src\ldblib.c" />
     <ClCompile Include="..\src\ldebug.c" />
     <ClCompile Include="..\src\ldo.c" />
@@ -169,12 +172,12 @@
     <ClCompile Include="..\src\lundump.c" />
     <ClCompile Include="..\src\lvm.c" />
     <ClCompile Include="..\src\lzio.c" />
-    <ClCompile Include="..\src\print.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\lapi.h" />
     <ClInclude Include="..\src\lauxlib.h" />
     <ClInclude Include="..\src\lcode.h" />
+    <ClInclude Include="..\src\lctype.h" />
     <ClInclude Include="..\src\ldebug.h" />
     <ClInclude Include="..\src\ldo.h" />
     <ClInclude Include="..\src\lfunc.h" />
@@ -191,6 +194,7 @@
     <ClInclude Include="..\src\ltable.h" />
     <ClInclude Include="..\src\ltm.h" />
     <ClInclude Include="..\src\lua.h" />
+    <ClInclude Include="..\src\lua.hpp" />
     <ClInclude Include="..\src\luaconf.h" />
     <ClInclude Include="..\src\lualib.h" />
     <ClInclude Include="..\src\lundump.h" />

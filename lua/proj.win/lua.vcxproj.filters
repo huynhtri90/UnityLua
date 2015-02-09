@@ -96,7 +96,13 @@
     <ClCompile Include="..\src\lzio.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\print.c">
+    <ClCompile Include="..\src\lbitlib.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\lcorolib.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\lctype.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -171,6 +177,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\src\lzio.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\lctype.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\lua.hpp">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
