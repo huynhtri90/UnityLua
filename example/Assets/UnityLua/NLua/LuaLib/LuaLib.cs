@@ -382,14 +382,14 @@ namespace NLua
 			return LuaCore.LuaLGetMetafield (luaState, stackPos, field) != 0;
 		}
 
-		public static int LuaLLoadBuffer (LuaState luaState, string buff, string name)
+		public static int LuaLLoadBuffer (LuaState luaState, string buff, string name, string mode = null)
 		{
-			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)0, name);
+			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)0, name, mode);
 		}
 
-		public static int LuaLLoadBuffer (LuaState luaState, byte [] buff, string name)
+		public static int LuaLLoadBuffer (LuaState luaState, byte [] buff, string name, string mode = null)
 		{
-			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)buff.Length, name);
+			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)buff.Length, name, mode);
 		}
 
 		public static int LuaLLoadFile (LuaState luaState, string filename)

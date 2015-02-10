@@ -92,6 +92,7 @@ namespace NLua
 		private bool globalsSorted;
 		#endregion
 		private LuaState luaState;
+		public LuaState LuaState {get {return luaState;} }
 		/// <summary>
 		/// True while a script is being executed
 		/// </summary>

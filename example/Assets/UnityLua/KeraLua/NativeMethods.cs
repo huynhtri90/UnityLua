@@ -175,8 +175,8 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_getmetafield")]
 		internal static extern int luaL_getmetafield (IntPtr luaState, int stackPos, string field);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadbuffer")]
-		internal static extern int luanet_loadbuffer (IntPtr luaState, byte [] buff, uint size, string name);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_loadbufferx")]
+		internal static extern int luaL_loadbufferx (IntPtr luaState, byte [] buff, uint size, string name, string mode);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadfile")]
 		internal static extern int luanet_loadfile (IntPtr luaState, string filename);

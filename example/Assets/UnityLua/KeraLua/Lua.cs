@@ -289,16 +289,16 @@ namespace KeraLua
 		}
 
 		// [CLSCompliantAttribute (false)]
-		public static int LuaNetLoadBuffer (IntPtr luaState, string str, uint size, string name)
+		public static int LuaNetLoadBuffer (IntPtr luaState, string str, uint size, string name, string mode)
 		{
 			var buff = DefaultEncoding.GetBytes(str);
-			return NativeMethods.luanet_loadbuffer (luaState, buff, (uint)buff.Length, name);
+			return NativeMethods.luaL_loadbufferx (luaState, buff, (uint)buff.Length, name, mode);
 		}
 
 		// [CLSCompliantAttribute (false)]
-		public static int LuaNetLoadBuffer (IntPtr luaState, byte [] buff, uint size, string name)
+		public static int LuaNetLoadBuffer (IntPtr luaState, byte [] buff, uint size, string name, string mode)
 		{
-			return NativeMethods.luanet_loadbuffer (luaState, buff, size, name);
+			return NativeMethods.luaL_loadbufferx (luaState, buff, size, name, mode);
 		}
 
 		public static int LuaNetLoadFile (IntPtr luaState, string filename)
