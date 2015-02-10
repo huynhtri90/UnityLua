@@ -129,8 +129,8 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnil")]
 		internal static extern void lua_pushnil (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_pcall")]
-		internal static extern int luanet_pcall (IntPtr luaState, int nArgs, int nResults, int errfunc);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pcall")]
+		internal static extern int lua_pcall (IntPtr luaState, int nArgs, int nResults, int errfunc);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_tocfunction")]
 		internal static extern IntPtr lua_tocfunction (IntPtr luaState, int index);
@@ -157,8 +157,8 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_tolstring")]
 		internal static extern IntPtr lua_tolstring (IntPtr luaState, int index, out uint strLen);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_pushlstring")]
-		internal static extern void luanet_pushlstring (IntPtr luaState, byte[] str, uint size);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_pushlstring")]
+		internal static extern void lua_pushlstring (IntPtr luaState, byte[] str, uint size);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_pushstring")]
 		internal static extern void lua_pushstring (IntPtr luaState, string str);
@@ -175,11 +175,11 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_getmetafield")]
 		internal static extern int luaL_getmetafield (IntPtr luaState, int stackPos, string field);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadbuffer")]
-		internal static extern int luanet_loadbuffer (IntPtr luaState, byte [] buff, uint size, string name);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_loadbufferx")]
+		internal static extern int luaL_loadbufferx (IntPtr luaState, byte [] buff, uint size, string name, string mode);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadfile")]
-		internal static extern int luanet_loadfile (IntPtr luaState, string filename);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_loadfilex")]
+		internal static extern int luaL_loadfilex (IntPtr luaState, string filename, string mode);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_error")]
 		internal static extern void lua_error (IntPtr luaState);
@@ -244,11 +244,11 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_popglobaltable")]
 		internal static extern void luanet_popglobaltable (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_getglobal")]
-		internal static extern void luanet_getglobal (IntPtr luaState, string name);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_getglobal")]
+		internal static extern void lua_getglobal (IntPtr luaState, string name);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_setglobal")]
-		internal static extern void luanet_setglobal (IntPtr luaState, string name);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_setglobal")]
+		internal static extern void lua_setglobal (IntPtr luaState, string name);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_registryindex")]
 		internal static extern int luanet_registryindex ();

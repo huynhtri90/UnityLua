@@ -201,7 +201,7 @@ namespace KeraLua
 
 		public static int LuaNetPCall (IntPtr luaState, int nArgs, int nResults, int errfunc)
 		{
-			return NativeMethods.luanet_pcall (luaState, nArgs, nResults, errfunc);
+			return NativeMethods.lua_pcall (luaState, nArgs, nResults, errfunc);
 		}
 
 		public static LuaNativeFunction LuaToCFunction (IntPtr luaState, int index)
@@ -292,18 +292,18 @@ namespace KeraLua
 		public static int LuaNetLoadBuffer (IntPtr luaState, string str, uint size, string name)
 		{
 			var buff = DefaultEncoding.GetBytes(str);
-			return NativeMethods.luanet_loadbuffer (luaState, buff, (uint)buff.Length, name);
+			return NativeMethods.luaL_loadbufferx (luaState, buff, (uint)buff.Length, name, null);
 		}
 
 		// [CLSCompliantAttribute (false)]
 		public static int LuaNetLoadBuffer (IntPtr luaState, byte [] buff, uint size, string name)
 		{
-			return NativeMethods.luanet_loadbuffer (luaState, buff, size, name);
+			return NativeMethods.luaL_loadbufferx (luaState, buff, size, name, null);
 		}
 
 		public static int LuaNetLoadFile (IntPtr luaState, string filename)
 		{
-			return NativeMethods.luanet_loadfile (luaState, filename);
+			return NativeMethods.luaL_loadfilex (luaState, filename, null);
 		}
 
 		public static void LuaError (IntPtr luaState)
@@ -468,12 +468,12 @@ namespace KeraLua
 
 		public static void LuaNetSetGlobal (IntPtr luaState, string name)
 		{
-			NativeMethods.luanet_setglobal (luaState, name);
+			NativeMethods.lua_setglobal (luaState, name);
 		}
 
 		public static void LuaNetGetGlobal (IntPtr luaState, string name)
 		{
-			NativeMethods.luanet_getglobal (luaState, name);
+			NativeMethods.lua_getglobal (luaState, name);
 		}
 
 		public static IntPtr LuaNetGetMainState (IntPtr luaState)

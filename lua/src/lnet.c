@@ -144,32 +144,6 @@ LUA_API void luanet_popglobaltable (lua_State *L) {
 	lua_popglobaltable (L);
 }
 
-LUA_API void luanet_setglobal (lua_State *L, const char * name) {
-	lua_setglobal (L, name);
-}
-
-LUA_API void luanet_getglobal (lua_State *L, const char * name) {
-	lua_getglobal (L, name);
-}
-
-
-LUA_API int luanet_pcall (lua_State *L, int nargs, int nresults, int errfunc)
-{
-	return lua_pcall (L, nargs, nresults, errfunc);
-}
-
-LUA_API int luanet_loadbuffer (lua_State *L, const char *buff, size_t sz, const char *name)
-{
-    if (sz == 0)
-        sz = strlen (buff);
-	return luaL_loadbuffer (L, buff, sz, name);
-}
-
-LUA_API int luanet_loadfile (lua_State *L, const char *file)
-{
-	return luaL_loadfile (L, file);
-}
-
 LUA_API double luanet_tonumber (lua_State *L, int idx)
 {
 	return lua_tonumber (L, idx);
@@ -178,11 +152,6 @@ LUA_API double luanet_tonumber (lua_State *L, int idx)
 LUA_API int luanet_equal (lua_State *L, int idx1, int idx2)
 {
 	return lua_compare(L,(idx1),(idx2),LUA_OPEQ);
-}
-
-LUA_API void luanet_pushlstring (lua_State *L, const char *s, size_t len)
-{
-	lua_pushlstring (L, s, len);
 }
 
 static void hook_trampoline (lua_State *L, lua_Debug *ar)
