@@ -262,9 +262,9 @@ namespace NLua
 		 * Implementation of load_assembly. Throws an error
 		 * if the assembly is not found.
 		 */
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		private static int LoadAssembly (LuaState luaState)
 		{
 			var translator = ObjectTranslatorPool.Instance.Find (luaState);
@@ -349,9 +349,9 @@ namespace NLua
 		 * Implementation of import_type. Returns nil if the
 		 * type is not found.
 		 */
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		private static int ImportType (LuaState luaState)
 		{
 			var translator = ObjectTranslatorPool.Instance.Find (luaState);
@@ -376,9 +376,9 @@ namespace NLua
 		 * argument in the stack) as an object subclassing the
 		 * type passed as second argument in the stack.
 		 */
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		private static int RegisterTable (LuaState luaState)
 		{
 			var translator = ObjectTranslatorPool.Instance.Find (luaState);
@@ -427,9 +427,9 @@ namespace NLua
 		 * Implementation of free_object. Clears the metatable and the
 		 * base field, freeing the created object for garbage-collection
 		 */
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		private static int UnregisterTable (LuaState luaState)
 		{
 			var translator = ObjectTranslatorPool.Instance.Find (luaState);
@@ -471,9 +471,9 @@ namespace NLua
 		 * Implementation of get_method_bysig. Returns nil
 		 * if no matching method is not found.
 		 */
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		private static int GetMethodSignature (LuaState luaState)
 		{
 			var translator = ObjectTranslatorPool.Instance.Find (luaState);
@@ -523,9 +523,9 @@ namespace NLua
 		 * Implementation of get_constructor_bysig. Returns nil
 		 * if no matching constructor is found.
 		 */
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		private static int GetConstructorSignature (LuaState luaState)
 		{
 			var translator = ObjectTranslatorPool.Instance.Find (luaState);
@@ -1010,9 +1010,9 @@ namespace NLua
 			return 2;
 		}
 
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		private static int CType (LuaState luaState)
 		{
 			var translator = ObjectTranslatorPool.Instance.Find (luaState);
@@ -1029,9 +1029,9 @@ namespace NLua
 			return 1;
 		}
 
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		private static int EnumFromInt (LuaState luaState)
 		{
 			var translator = ObjectTranslatorPool.Instance.Find (luaState);

@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 /*
 #if UNITY_3D
-*/
+
 namespace KeraLua {
 	/// <summary>
 	/// Disables CLS Compliance in Unity3D.
@@ -16,6 +16,6 @@ namespace KeraLua {
 		public bool IsCompliant { get { return _compliant; } }
 	}
 }
-/*
+
 #endif
 */

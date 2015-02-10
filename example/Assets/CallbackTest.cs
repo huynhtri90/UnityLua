@@ -20,7 +20,6 @@ public class CallbackTest : MonoBehaviour
     void Awake()
     {
         // for ios!
-		X.Example.RegisterLuaDelegateType(typeof(CallbackTest.BoolDelegate), typeof(LuaBoolDelegateEventArgsHandler));
     }
 
 	void Start () 

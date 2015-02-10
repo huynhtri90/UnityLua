@@ -334,9 +334,9 @@ end
 			}
 		}
 
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-#endif
+// #endif
 		static int PanicCallback (LuaState luaState)
 		{
 			string reason = string.Format ("unprotected error in call to Lua API ({0})", LuaLib.LuaToString (luaState, -1));
@@ -965,9 +965,9 @@ end
 		/// <param name = "luaState">lua state</param>
 		/// <param name = "luaDebug">Pointer to LuaDebug (lua_debug) structure</param>
 		/// 
-#if MONOTOUCH
+// #if MONOTOUCH
 		[MonoPInvokeCallback (typeof (LuaHook))]
-#endif
+// #endif
 #if USE_KOPILUA
 		static void DebugHookCallback (LuaState luaState, LuaDebug debug)
 		{

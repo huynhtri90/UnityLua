@@ -15,6 +15,14 @@ namespace NLua {
 		public CLSCompliantAttribute(bool isCompliant) { _compliant = isCompliant; }
 		public bool IsCompliant { get { return _compliant; } }
 	}
+
+	#pragma warning disable 414
+	public class MonoPInvokeCallbackAttribute : System.Attribute
+	{
+		private Type type;
+		internal MonoPInvokeCallbackAttribute( Type t ) { type = t; }
+	}
+	#pragma warning restore 414
 }
 /*
 #endif
