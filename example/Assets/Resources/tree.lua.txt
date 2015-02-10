@@ -1,4 +1,57 @@
-﻿local function VarText(treeData, var)
+﻿
+
+function Tree(var, depth)
+
+	local treeData =
+	{
+		tableVisit = {},
+		thisPath = "*",
+		Output = function (self, textLine)
+            Log(textLine);
+		end
+	};
+
+    Log("*");
+
+	Show(treeData, var, nil, depth);
+end
+
+function PrintTree(var, depth)
+
+	local treeData =
+	{
+		tableVisit = {},
+		thisPath = "*",
+		Output = function (self, textLine)
+            print(textLine);
+		end
+	};
+
+    print("*");
+
+	Show(treeData, var, nil, depth);
+end
+
+function StringTree(var, depth)
+	local str = "";
+
+	local treeData =
+	{
+		tableVisit = {},
+		thisPath = "*",
+		Output = function (self, textLine)
+			str = str .. "\n" .. textLine;
+		end
+	};
+
+	str = "*";
+	Show(treeData, var, nil, depth);
+	
+    print(str);	
+end
+
+
+function VarText(treeData, var)
 	local varType = type(var);
 	local text = "";
 
@@ -26,7 +79,7 @@
 	return text;
 end
 
-local function Show(treeData, var, szBase, depth)
+function Show(treeData, var, szBase, depth)
 	if depth and depth <= 0 then
 		return;
 	end
@@ -89,40 +142,32 @@ local function Show(treeData, var, szBase, depth)
 	end	
 end
 
-local Lib = {};
+--------测试数据--------
+--Log("_G");
+--Tree(_G);
 
-function Lib.CreatePrintTree(fnPrint)
-	return function (var, depth)
-		local treeData =
-		{
-			tableVisit = {},
-			thisPath = "*",
-			Output = function (self, textLine)
-	            fnPrint(textLine);
-			end
-		};
+player =
+{
+    name = "张三",
+    id = 123,
+    version = 1000,
+    last_login_ip = "172.16.11.152",
+    last_login_time = os.time(),
+    data = {},
+    login = function()
+    	print("");
+    end
+}
 
-	    fnPrint("*");
-		Show(treeData, var, nil, depth);
-	end
-end
+card1 = {id = "00_17_55_7f", level = 3, template = 100, owner = player};
+card2 = {id = "75_82_35_1e", level = 1, template = 17};
+card3 = {id = "97_21_30_7f", level = 2, template = 99};
 
-function Lib.StringTree(var, depth)
-	local str = "";
+player.data.cards = {card1, card2, card1};
 
-	local treeData =
-	{
-		tableVisit = {},
-		thisPath = "*",
-		Output = function (self, textLine)
-			str = str .. "\n" .. textLine;
-		end
-	};
+count = count or 1;
+--print("--------------------------"..count.."------------------------------");
+count = count + 1;
 
-	str = "*";
-	Show(treeData, var, nil, depth);
-	
-    return str;
-end
-
-return Lib;
+--Log("player");
+--Tree(player);

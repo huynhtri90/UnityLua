@@ -1,5 +1,19 @@
 ﻿
-local function push_back(self, var)
+function new()
+    local list = {count = 0};
+    list.push_back = push_back;
+    list.push_front = push_front;
+    list.pop_back = pop_back;
+    list.pop_front = pop_front;
+    list.back = back;
+    list.front = front;
+    list.size = size;
+    list.traverse = traverse;
+    list.remove_if = remove_if;
+    return list;
+end
+
+function push_back(self, var)
     self.count = self.count + 1;
 
     if not self.head then
@@ -13,7 +27,7 @@ local function push_back(self, var)
     self.tail = node;
 end
 
-local function push_front(self, var)
+function push_front(self, var)
     self.count = self.count + 1;
 
     if not self.head then
@@ -27,7 +41,7 @@ local function push_front(self, var)
     self.head = node;
 end
 
-local function pop_front(self)
+function pop_front(self)
     if not self.head then
       return nil;
     end
@@ -47,7 +61,7 @@ local function pop_front(self)
     return node.value;
 end
 
-local function pop_back(self)
+function pop_back(self)
     if not self.tail then
         return nil;
     end
@@ -67,21 +81,21 @@ local function pop_back(self)
     return node.value;
 end
 
-local function front(self)
+function front(self)
     if not self.head then
         return nil;
     end
     return self.head.value;
 end
 
-local function back(self)
+function back(self)
     if not self.tail then
         return nil;
     end
     return self.tail.value;
 end
 
-local function traverse(self, func)
+function traverse(self, func)
     local node = self.head;
     while node do
         local bRet = func(node.value);
@@ -92,7 +106,7 @@ local function traverse(self, func)
     end
 end
 
-local function remove_if(self, func)
+function remove_if(self, func)
     local node = self.head;
     while node do
         local bRet = func(node.value);
@@ -118,22 +132,6 @@ local function remove_if(self, func)
     end
 end
 
-local function size(self)
+function size(self)
     return self.count;
 end
-
-function new()
-    local list = {count = 0};
-    list.push_back = push_back;
-    list.push_front = push_front;
-    list.pop_back = pop_back;
-    list.pop_front = pop_front;
-    list.back = back;
-    list.front = front;
-    list.size = size;
-    list.traverse = traverse;
-    list.remove_if = remove_if;
-    return list;
-end
-
-return new;

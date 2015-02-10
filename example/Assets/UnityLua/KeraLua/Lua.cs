@@ -258,9 +258,9 @@ namespace KeraLua
 		}
 
 		// [CLSCompliantAttribute (false)]
-		public static void LuaNetPushLString (IntPtr luaState, string str, uint size)
+		public static void LuaNetPushLString (IntPtr luaState, byte[] buff)
 		{
-			NativeMethods.luanet_pushlstring (luaState, str, size);
+			NativeMethods.luanet_pushlstring (luaState, buff, (uint)buff.Length);
 		}
 
 		public static void LuaPushString (IntPtr luaState, string str)
@@ -289,16 +289,16 @@ namespace KeraLua
 		}
 
 		// [CLSCompliantAttribute (false)]
-		public static int LuaNetLoadBuffer (IntPtr luaState, string str, uint size, string name, string mode)
+		public static int LuaNetLoadBuffer (IntPtr luaState, string str, uint size, string name)
 		{
 			var buff = DefaultEncoding.GetBytes(str);
-			return NativeMethods.luaL_loadbufferx (luaState, buff, (uint)buff.Length, name, mode);
+			return NativeMethods.luanet_loadbuffer (luaState, buff, (uint)buff.Length, name);
 		}
 
 		// [CLSCompliantAttribute (false)]
-		public static int LuaNetLoadBuffer (IntPtr luaState, byte [] buff, uint size, string name, string mode)
+		public static int LuaNetLoadBuffer (IntPtr luaState, byte [] buff, uint size, string name)
 		{
-			return NativeMethods.luaL_loadbufferx (luaState, buff, size, name, mode);
+			return NativeMethods.luanet_loadbuffer (luaState, buff, size, name);
 		}
 
 		public static int LuaNetLoadFile (IntPtr luaState, string filename)

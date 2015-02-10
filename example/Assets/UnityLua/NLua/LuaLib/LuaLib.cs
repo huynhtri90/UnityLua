@@ -357,6 +357,11 @@ namespace NLua
 			LuaCore.LuaPushString (luaState, str);
 		}
 
+		public static void LuaPushString (LuaState luaState, byte[] buff)
+		{
+			LuaCore.LuaNetPushLString (luaState, buff);
+		}
+
 		public static int LuaLNewMetatable (LuaState luaState, string meta)
 		{
 			return LuaCore.LuaLNewMetatable (luaState, meta);
@@ -382,14 +387,14 @@ namespace NLua
 			return LuaCore.LuaLGetMetafield (luaState, stackPos, field) != 0;
 		}
 
-		public static int LuaLLoadBuffer (LuaState luaState, string buff, string name, string mode = null)
+		public static int LuaLLoadBuffer (LuaState luaState, string buff, string name)
 		{
-			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)0, name, mode);
+			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)0, name);
 		}
 
-		public static int LuaLLoadBuffer (LuaState luaState, byte [] buff, string name, string mode = null)
+		public static int LuaLLoadBuffer (LuaState luaState, byte [] buff, string name)
 		{
-			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)buff.Length, name, mode);
+			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)buff.Length, name);
 		}
 
 		public static int LuaLLoadFile (LuaState luaState, string filename)

@@ -100,6 +100,8 @@ namespace NLua
 
 		private LuaNativeFunction panicCallback;
 		private ObjectTranslator translator;
+		public ObjectTranslator Translator {get {return translator;} }
+
 		/// <summary>
 		/// Used to ensure multiple .net threads all get serialized by this single lock for access to the lua stack/objects
 		/// </summary>

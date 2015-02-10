@@ -1,10 +1,4 @@
 using System;
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Reflection;
-using System.Threading;
 using System.Text;
 using NLua;
 using LuaCore  = KeraLua.Lua;
@@ -19,22 +13,21 @@ namespace UnityLua
 		public static LoadAssetDelegate LoadAsset = UnityEngine.Resources.Load;
 
 		static LuaNativeFunction PrintFunction;
-		static LuaNativeFunction LoadFileFunction;
-		static LuaNativeFunction LoaderFunction;
+		static LuaNativeFunction ReadFileFunction;
 
-		public static void Open(LuaState luaState, string[] assemblys = null)
+		public static void Open(Lua lua, string[] assemblys = null)
 		{
 			if (PrintFunction == null)
 				PrintFunction = new LuaNativeFunction(Print);
+
+			LuaLib.LuaPushStdCallCFunction(lua.LuaState, PrintFunction);
+			LuaLib.LuaSetGlobal(lua.LuaState, "print");
 			
-			if (LoadFileFunction == null)
-				LoadFileFunction = new LuaNativeFunction(LoadFile);
+			if (ReadFileFunction == null)
+				ReadFileFunction = new LuaNativeFunction(ReadFile);
 
-			LuaLib.LuaPushStdCallCFunction(luaState, PrintFunction);
-			LuaLib.LuaSetGlobal(luaState, "print");
-
-			LuaLib.LuaPushStdCallCFunction(luaState, LoadFileFunction);
-			LuaLib.LuaSetGlobal(luaState, "loadfile");
+			LuaLib.LuaPushStdCallCFunction(lua.LuaState, ReadFileFunction);
+			LuaLib.LuaSetGlobal(lua.LuaState, "readfile");
 
 			StringBuilder sb = new StringBuilder(@"
 				import 'System'
@@ -49,7 +42,7 @@ namespace UnityLua
 					sb.AppendFormat("import \'{0}\'\n", assembly);
 				}
 			}
-			LuaLib.LuaLDoString(luaState, sb.ToString());
+			LuaLib.LuaLDoString(lua.LuaState, sb.ToString());
 		}
 
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
@@ -82,23 +75,15 @@ namespace UnityLua
 		}
 
 		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
-		public static int LoadFile(LuaState luaState)
+		static int ReadFile(LuaState luaState)
 		{
-			// Get script to load
 			string fileName = LuaLib.LuaToString(luaState, 1);
-			fileName = fileName.Replace('.', '/');
-			fileName += ".lua";
-
-			string mode = LuaLib.LuaToString(luaState, 2);
-			
-			// Load with Unity3D resources
-			var file = (UnityEngine.TextAsset)LoadAsset(fileName);
-			if( file == null )
+			var file = LoadAsset(fileName) as UnityEngine.TextAsset;
+			if(file == null)
 				return 0;
 			
-			var buff = file.bytes;
-			LuaLib.LuaLLoadBuffer(luaState, buff, fileName, mode);
-			return 1;
+			LuaLib.LuaPushString(luaState, file.bytes);
+            return 1;
 		}
 	}
 }
