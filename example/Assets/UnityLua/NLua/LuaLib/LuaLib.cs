@@ -122,11 +122,11 @@ namespace NLua
 
 		public static int LuaLDoFile (LuaState luaState, string fileName)
 		{
-			int result = LuaCore.LuaNetLoadFile (luaState, fileName);
+			int result = LuaCore.LuaLoadFile (luaState, fileName);
 			if (result != 0)
 				return result;
 
-			return LuaCore.LuaNetPCall (luaState, 0, -1, 0);
+			return LuaCore.LuaPCall (luaState, 0, -1, 0);
 		}
 
 		public static void LuaGetGlobal (LuaState luaState, string name)
@@ -296,7 +296,7 @@ namespace NLua
 
 		public static int LuaPCall (LuaState luaState, int nArgs, int nResults, int errfunc)
 		{
-			return LuaCore.LuaNetPCall (luaState, nArgs, nResults, errfunc);
+			return LuaCore.LuaPCall (luaState, nArgs, nResults, errfunc);
 		}
 
 		public static LuaNativeFunction LuaToCFunction (LuaState luaState, int index)
@@ -359,7 +359,7 @@ namespace NLua
 
 		public static void LuaPushString (LuaState luaState, byte[] buff)
 		{
-			LuaCore.LuaNetPushLString (luaState, buff);
+			LuaCore.LuaPushLString (luaState, buff);
 		}
 
 		public static int LuaLNewMetatable (LuaState luaState, string meta)
@@ -389,17 +389,17 @@ namespace NLua
 
 		public static int LuaLLoadBuffer (LuaState luaState, string buff, string name)
 		{
-			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)0, name);
+			return LuaCore.LuaLoadBuffer (luaState, buff, (uint)0, name);
 		}
 
 		public static int LuaLLoadBuffer (LuaState luaState, byte [] buff, string name)
 		{
-			return LuaCore.LuaNetLoadBuffer (luaState, buff, (uint)buff.Length, name);
+			return LuaCore.LuaLoadBuffer (luaState, buff, (uint)buff.Length, name);
 		}
 
 		public static int LuaLLoadFile (LuaState luaState, string filename)
 		{
-			return LuaCore.LuaNetLoadFile (luaState, filename);
+			return LuaCore.LuaLoadFile (luaState, filename);
 		}
 
 		public static bool LuaLCheckMetatable (LuaState luaState, int index)

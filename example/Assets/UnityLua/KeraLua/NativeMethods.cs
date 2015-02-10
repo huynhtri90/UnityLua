@@ -129,8 +129,8 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnil")]
 		internal static extern void lua_pushnil (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pcall")]
-		internal static extern int lua_pcall (IntPtr luaState, int nArgs, int nResults, int errfunc);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pcallk")]
+		internal static extern int lua_pcallk (IntPtr luaState, int nArgs, int nResults, int errfunc);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_tocfunction")]
 		internal static extern IntPtr lua_tocfunction (IntPtr luaState, int index);
@@ -159,9 +159,6 @@ namespace KeraLua
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_pushlstring")]
 		internal static extern void lua_pushlstring (IntPtr luaState, byte[] str, uint size);
-
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_pushstring")]
-		internal static extern void lua_pushstring (IntPtr luaState, string str);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_newmetatable")]
 		internal static extern int luaL_newmetatable (IntPtr luaState, string meta);

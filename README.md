@@ -11,9 +11,8 @@ The binaries in Plugings can be built from source. The solution files are in lua
 1. Remove KopiLua from NLua.
 1. Make KeraLua support unity ios. 
 1. Remove Emit, because unity ios not support.
-
+1. Remove some luanet_* functions. such as luanet_loadbuffer...
+1. String use custom encoding, such as UTF8.
 
 # Todo list #
-1. String use custom encoding, such as UTF8.
-1. Remove some luanet_* functions. such as luanet_loadbuffer...
 1. Continue to support unity.
