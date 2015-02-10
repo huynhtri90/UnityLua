@@ -126,7 +126,7 @@ namespace NLua
 			if (result != 0)
 				return result;
 
-			return LuaCore.LuaPCall (luaState, 0, -1, 0);
+			return LuaCore.LuaNetPCall (luaState, 0, -1, 0);
 		}
 
 		public static void LuaGetGlobal (LuaState luaState, string name)
@@ -296,7 +296,7 @@ namespace NLua
 
 		public static int LuaPCall (LuaState luaState, int nArgs, int nResults, int errfunc)
 		{
-			return LuaCore.LuaPCall (luaState, nArgs, nResults, errfunc);
+			return LuaCore.LuaNetPCall (luaState, nArgs, nResults, errfunc);
 		}
 
 		public static LuaNativeFunction LuaToCFunction (LuaState luaState, int index)

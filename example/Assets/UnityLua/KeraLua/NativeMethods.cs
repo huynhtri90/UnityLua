@@ -129,8 +129,8 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnil")]
 		internal static extern void lua_pushnil (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pcallk")]
-		internal static extern int lua_pcallk (IntPtr luaState, int nArgs, int nResults, int errfunc);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_pcall")]
+		internal static extern int luanet_pcall (IntPtr luaState, int nArgs, int nResults, int errfunc);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_tocfunction")]
 		internal static extern IntPtr lua_tocfunction (IntPtr luaState, int index);

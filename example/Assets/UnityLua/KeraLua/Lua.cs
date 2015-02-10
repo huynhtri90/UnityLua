@@ -199,9 +199,9 @@ namespace KeraLua
 		}
 
 
-		public static int LuaPCall (IntPtr luaState, int nArgs, int nResults, int errfunc)
+		public static int LuaNetPCall (IntPtr luaState, int nArgs, int nResults, int errfunc)
 		{
-			return NativeMethods.lua_pcall (luaState, nArgs, nResults, errfunc);
+			return NativeMethods.luanet_pcall (luaState, nArgs, nResults, errfunc);
 		}
 
 		public static LuaNativeFunction LuaToCFunction (IntPtr luaState, int index)

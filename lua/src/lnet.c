@@ -144,6 +144,10 @@ LUA_API void luanet_popglobaltable (lua_State *L) {
 	lua_popglobaltable (L);
 }
 
+LUA_API int luanet_pcall (lua_State *L, int nargs, int nresults, int errfunc)
+{
+	return lua_pcall (L, nargs, nresults, errfunc);
+}
 LUA_API double luanet_tonumber (lua_State *L, int idx)
 {
 	return lua_tonumber (L, idx);
