@@ -107,5 +107,20 @@ namespace UnityLua
 			var ret = translator.PopValues(luaState, oldTop);
 			return ret;
 		}
+
+		public static void CheckStack(Lua lua)
+		{
+			var luaState = lua.LuaState;
+			var top = LuaLib.LuaGetTop(luaState);
+			if (top == 0)
+				return;
+
+			LuaLib.LuaPushString(luaState, "Script stack leak!");
+			LuaLib.LuaPushNumber(luaState, top);
+			LuaLib.LuaGetGlobal(luaState, "print");
+			LuaLib.LuaInsert(luaState, 1);
+			LuaLib.LuaPCall(luaState, top + 2, 0, 0);
+			LuaLib.LuaSetTop(luaState, 0);
+		}
 	}
 }

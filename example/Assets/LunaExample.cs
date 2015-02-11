@@ -23,6 +23,8 @@ namespace X
 			UnityLua.Luna.Open(LuaState);
 
 			UnityLua.Luna.CallFunction(LuaState, "main.lua", "Start", this.gameObject);
+
+			UnityLua.Luna.CheckStack(LuaState);
         }
 
 		void Update() 
