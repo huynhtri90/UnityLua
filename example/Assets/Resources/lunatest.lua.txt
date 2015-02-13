@@ -1,11 +1,9 @@
-UsingNamespace("Assembly-CSharp");
-UsingNamespace("UnityEngine");
-UsingNamespace("System");
 Lib = Import("lib.lua");
+Clr = Import("clr.lua");
 
 function Start(gameObject)
 	print('hello', 'world');
-	obj = GameObject('TestLuna_New'); 
+	obj = Clr.Type.GameObject('TestLuna_New'); 
 	math.randomseed(os.time())
 	
 	Lib.Tree(_G);
@@ -17,6 +15,6 @@ end
 
 function OnGUI(gameObject)
 	for i = 1, 7 do
-		GUILayout.Label('Test' .. i,{ }); 
+		Clr.Type.GUILayout.Label('Test' .. i,{ }); 
 	end
 end

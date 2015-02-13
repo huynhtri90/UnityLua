@@ -17,7 +17,6 @@ namespace X
         void Start()
         {
 			LuaState = new Lua();
-			LuaState.LoadCLRPackage("UsingNamespace");
 			LuaState.LoadUnityExpand();
 			LuaState.LoadLunaExpand();
 
