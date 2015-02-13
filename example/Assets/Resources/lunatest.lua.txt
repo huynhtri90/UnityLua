@@ -2,7 +2,7 @@ Lib = Import("lib.lua");
 
 function Start(gameObject)
 	print('hello', 'world');
-	obj = GameObject('Test'); 
+	obj = GameObject('TestLuna_New'); 
 	math.randomseed(os.time())
 	
 	Lib.Tree(_G);

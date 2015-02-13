@@ -22,19 +22,19 @@ namespace X
 			UnityLua.UnityExpand.Open(LuaState);
 			UnityLua.Luna.Open(LuaState);
 
-			UnityLua.Luna.CallFunction(LuaState, "main.lua", "Start", this.gameObject);
+			UnityLua.Luna.CallFunction(LuaState, "lunatest.lua", "Start", this.gameObject);
 
 			UnityLua.Luna.CheckStack(LuaState);
         }
 
 		void Update() 
 		{
-			UnityLua.Luna.CallFunction(LuaState, "main.lua", "Update", this.gameObject);
+			UnityLua.Luna.CallFunction(LuaState, "lunatest.lua", "Update", this.gameObject);
 		}
 
 		void OnGUI() 
 		{
-			UnityLua.Luna.CallFunction(LuaState, "main.lua", "OnGUI", this.gameObject);
+			UnityLua.Luna.CallFunction(LuaState, "lunatest.lua", "OnGUI", this.gameObject);
 		}
     }
 }

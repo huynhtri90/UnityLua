@@ -1,0 +1,11 @@
+local function Start(gameObject)
+	print('hello', 'world');
+	obj = GameObject('TestRequire_New'); 
+	math.randomseed(os.time())
+end
+
+local function Update(gameObject)
+	gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * math.random(-0.5, 0.5);
+end
+
+return {Start = Start, Update = Update,}
