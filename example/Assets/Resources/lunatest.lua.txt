@@ -3,7 +3,7 @@ Clr = Import("clr.lua");
 
 function Start(gameObject)
 	print('hello', 'world');
-	obj = Clr.Type.GameObject('TestLuna_New'); 
+	obj = GameObject('TestLuna_New'); 
 	math.randomseed(os.time())
 	
 	Lib.Tree(_G);
@@ -15,6 +15,6 @@ end
 
 function OnGUI(gameObject)
 	for i = 1, 7 do
-		Clr.Type.GUILayout.Label('Test' .. i,{ }); 
+		GUILayout.Label('Test' .. i,{ }); 
 	end
 end

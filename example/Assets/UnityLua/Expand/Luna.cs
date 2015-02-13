@@ -12,47 +12,50 @@ namespace UnityLua
 		static LuaNativeFunction PrintFunction;
 		
 		const string LunaPackage = @"
+			_G.ImportFiles = _G.ImportFiles or {};
+			_G.io.readfile = _G.io.readfile or function(name)
+ 				local file = _G.io.open(name, 'rb');
+				if file then
+					return file:read('*all');
+				end
+			end
+
 			function _G.Import(name) 
-		        local key = 'FILE:' .. name; 
-		        if _G[key] then 
-		            return _G[key]; 
+		        local key = name;
+				local tb = _G.ImportFiles[key];
+
+		        if not tb then 
+			        tb = {}; 
+			        setmetatable(tb, {__index = _G});
+			        _G.ImportFiles[key] = tb;
+			    
+			        local text = _G.io.readfile(name);
+			        if text then
+						if text:find('^\xef\xbb\xbf') then
+				            text = text:sub(4);
+				        end
+
+					    tb.getfenv = function ()
+					        return tb;
+					    end
+
+					    local fn, msg = load(text, name, 't', tb);
+					    if not fn then
+					        print('Import ' .. name  .. ' filed.' .. msg);
+					        return _G[key];
+					    end    
+					    fn();
+					else
+						print('read ' .. name  .. ' filed.' .. msg);
+			        end
+
+			         
+					
 		        end
 		    
-		        local tb = {}; 
-		        setmetatable(tb, {__index = _G});
-		        _G[key] = tb;
-		    
-		        local text = nil;
-		        if readfile then
-		            text = readfile(name);
-		        else
-		            local file = io.open(name, 'rb');
-		            if file then
-		                text = file:read('*all');
-		            end
-		        end
-		    
-		        if not text then
-		            print('Import ' .. name  .. ' filed. File not exist.');
-		            return _G[key];
-		        end
 
-		        if text:find('^\xef\xbb\xbf') then
-		            text = text:sub(4);
-		        end
 
-			    tb.getfenv = function ()
-			        return tb;
-			    end
-
-			    local fn, msg = load(text, name, 't', tb);
-			    if not fn then
-			        print('Import ' .. name  .. ' filed.' .. msg);
-			        return _G[key];
-			    end    
-			    fn(); 
-
-		        return _G[key];
+		        return _G.ImportFiles[key];
 		    end
 
 			function _G.CallImportFuncion(file, fnName, ...)

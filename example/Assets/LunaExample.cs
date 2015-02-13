@@ -19,6 +19,7 @@ namespace X
 			LuaState = new Lua();
 			LuaState.LoadUnityExpand();
 			LuaState.LoadLunaExpand();
+			LuaState.LoadCLRPackage("Using");
 
 			LuaState.CallLunaFunction("lunatest.lua", "Start", this.gameObject);
 			UnityLua.Luna.CheckStack(LuaState);

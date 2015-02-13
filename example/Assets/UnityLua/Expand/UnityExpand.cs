@@ -19,7 +19,23 @@ namespace UnityLua
 		public static void LoadUnityExpand(this Lua lua)
 		{
 			SetPrint(lua);
+			SetReadFile(lua);
 			SetSearcher(lua);
+		}
+
+		// this LoadCLRPackage can rename the 'import' function
+		public static void LoadCLRPackage(this Lua lua, string newImportName)
+		{
+			lua.LoadCLRPackage();
+			if (!string.IsNullOrEmpty(newImportName))
+			{
+				string str = string.Format(@"
+					if _G.import then -- To avoid ambiguity, rename _G.import 
+						_G.{0} = _G.import;
+						_G.import = nil;
+					end", newImportName);
+				LuaLib.LuaLDoString(lua.LuaState, str);
+			}
 		}
 
 		public static void SetPrint(Lua lua)
@@ -31,14 +47,20 @@ namespace UnityLua
 			LuaLib.LuaSetGlobal(lua.LuaState, "print");
 		}
 
-		public static void SetSearcher(Lua lua)
+		public static void SetReadFile(Lua lua)
 		{
 			if (ReadFileFunction == null)
 				ReadFileFunction = new LuaNativeFunction(ReadFile);
 			
+			LuaLib.LuaGetGlobal(lua.LuaState, "io");
+			LuaLib.LuaPushString(lua.LuaState, "readfile");
 			LuaLib.LuaPushStdCallCFunction(lua.LuaState, ReadFileFunction);
-			LuaLib.LuaSetGlobal(lua.LuaState, "readfile");
-			
+			LuaLib.LuaSetTable(lua.LuaState, -3);
+			LuaLib.LuaPop(lua.LuaState, 1);
+		}
+
+		public static void SetSearcher(Lua lua)
+		{
 			if (SearcherUnityLuaFunction == null)
 				SearcherUnityLuaFunction = new LuaNativeFunction(Searcher_UnityLua);
 			
