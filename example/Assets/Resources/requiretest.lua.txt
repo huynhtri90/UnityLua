@@ -1,3 +1,7 @@
+import("Assembly-CSharp");
+import("UnityEngine");
+import("System");
+
 local function Start(gameObject)
 	print('hello', 'world');
 	obj = GameObject('TestRequire_New'); 

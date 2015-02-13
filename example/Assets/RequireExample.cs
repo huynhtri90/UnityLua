@@ -4,6 +4,7 @@ using NLua;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
+using UnityLua;
 
 namespace X
 {
@@ -16,8 +17,7 @@ namespace X
 		{
 			LuaState = new Lua();
 			LuaState.LoadCLRPackage();
-			
-			UnityLua.UnityExpand.Open(LuaState);
+			LuaState.LoadUnityExpand();
 
 			var ret = LuaState.DoString(@"return require 'requiretest'");
 			TestLib = ret[0] as LuaTable;

@@ -7,16 +7,11 @@ using LuaNativeFunction = KeraLua.LuaNativeFunction;
 
 namespace UnityLua
 {
-	public class Luna
+	public static class Luna
 	{
 		static LuaNativeFunction PrintFunction;
 		
 		const string LunaPackage = @"
-			if _G.import then -- To avoid ambiguity, rename _G.import 
-				_G.import_assembly = _G.import;
-				_G.import = nil;
-			end 
-
 			function _G.Import(name) 
 		        local key = 'FILE:' .. name; 
 		        if _G[key] then 
@@ -70,12 +65,12 @@ namespace UnityLua
 				return fn(...);
 			end
 		";
-		public static void Open(Lua lua, string[] assemblys = null)
+		public static void LoadLunaExpand(this Lua lua)
 		{
 			LuaLib.LuaLDoString(lua.LuaState, LunaPackage);
 		}
 
-		public static object[] CallFunction(Lua lua, string fileName, string function, params object[] args)
+		public static object[] CallLunaFunction(this Lua lua, string fileName, string function, params object[] args)
 		{
 			var luaState = lua.LuaState;
 			var translator = lua.Translator;
@@ -108,7 +103,7 @@ namespace UnityLua
 			return ret;
 		}
 
-		public static void CheckStack(Lua lua)
+		public static void CheckStack(this Lua lua)
 		{
 			var luaState = lua.LuaState;
 			var top = LuaLib.LuaGetTop(luaState);

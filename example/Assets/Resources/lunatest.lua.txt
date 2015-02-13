@@ -1,3 +1,6 @@
+UsingNamespace("Assembly-CSharp");
+UsingNamespace("UnityEngine");
+UsingNamespace("System");
 Lib = Import("lib.lua");
 
 function Start(gameObject)
