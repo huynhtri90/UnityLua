@@ -51,8 +51,8 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luaL_openlibs")]
 		internal static extern void luaL_openlibs (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luaL_loadstring")]
-		internal static extern int luaL_loadstring (IntPtr luaState, byte [] chunk);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_loadstring")]
+		internal static extern int luaL_loadstring (IntPtr luaState, string chunk);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_createtable")]
 		internal static extern void lua_createtable (IntPtr luaState, int narr, int nrec);

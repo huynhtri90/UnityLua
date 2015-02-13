@@ -116,9 +116,14 @@ namespace UnityLua
 				return;
 
 			LuaLib.LuaPushString(luaState, "Script stack leak!");
+			LuaLib.LuaInsert(luaState, 1);
+			
 			LuaLib.LuaPushNumber(luaState, top);
+			LuaLib.LuaInsert(luaState, 1);
+			
 			LuaLib.LuaGetGlobal(luaState, "print");
 			LuaLib.LuaInsert(luaState, 1);
+
 			LuaLib.LuaPCall(luaState, top + 2, 0, 0);
 			LuaLib.LuaSetTop(luaState, 0);
 		}

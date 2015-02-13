@@ -47,12 +47,12 @@ namespace KeraLua
 
 		public static int LuaLLoadString (IntPtr luaState, string chunk)
 		{
-			return NativeMethods.luaL_loadstring (luaState, DefaultEncoding.GetBytes(chunk));
+			return NativeMethods.luaL_loadstring (luaState, chunk);
 		}
 
-		public static int LuaLLoadString (IntPtr luaState, byte [] chunk)
+		public static int LuaLLoadString (IntPtr luaState, byte[] chunk)
 		{
-			return NativeMethods.luaL_loadstring (luaState, chunk);
+			return LuaLoadBuffer (luaState, chunk, (uint)chunk.Length, null);
 		}
 
 		public static void LuaCreateTable (IntPtr luaState, int narr, int nrec)
