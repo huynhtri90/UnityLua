@@ -1,11 +1,10 @@
 using System;
 using System.Text;
-using NLua;
 using LuaCore  = KeraLua.Lua;
 using LuaState = KeraLua.LuaState;
 using LuaNativeFunction = KeraLua.LuaNativeFunction;
 
-namespace UnityLua
+namespace NLua
 {
 	public static class UnityExpand
 	{

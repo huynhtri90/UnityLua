@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Text;
-using NLua;
 using LuaCore  = KeraLua.Lua;
 using LuaState = KeraLua.LuaState;
 using LuaNativeFunction = KeraLua.LuaNativeFunction;
 
-namespace UnityLua
+namespace NLua
 {
 	public static class Luna
 	{
@@ -46,15 +45,9 @@ namespace UnityLua
 					    end    
 					    fn();
 					else
-						print('read ' .. name  .. ' filed.' .. msg);
+						print('read ' .. name  .. ' filed.');
 			        end
-
-			         
-					
 		        end
-		    
-
-
 		        return _G.ImportFiles[key];
 		    end
 
@@ -64,8 +57,15 @@ namespace UnityLua
 				if not fn then
 					return;
 				end
-
-				return fn(...);
+				
+				local handle = function(msg)
+					print(msg);
+					print(debug.traceback());
+				end
+				local ret = table.pack(xpcall(fn, handle, ...));
+				if ret[1] then
+					return table.unpack(ret, 2);
+				end
 			end
 		";
 		public static void LoadLunaExpand(this Lua lua)
@@ -124,6 +124,18 @@ namespace UnityLua
 
 			LuaLib.LuaPCall(luaState, top + 2, 0, 0);
 			LuaLib.LuaSetTop(luaState, 0);
+		}
+
+		public static LuaTable NewTable(this Lua lua)
+		{
+			var L = lua.LuaState;
+			int oldTop = LuaLib.LuaGetTop(L);
+			
+			LuaLib.LuaNewTable(L);
+			LuaTable returnVal = (LuaTable)lua.Translator.GetObject(L, -1);
+			
+			LuaLib.LuaSetTop(L,oldTop);
+			return returnVal;
 		}
 	}
 }

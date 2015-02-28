@@ -11,7 +11,7 @@ namespace KeraLua
 	{
 	
 #if UNITY_IPHONE
-		const string LIBNAME = "__Internal";
+		public const string LIBNAME = "__Internal";
 #else
 /*
 #if DEBUGLUA
@@ -27,7 +27,7 @@ namespace KeraLua
 		}
 #endif
 */
-		const string LIBNAME = "lua";
+		public const string LIBNAME = "lua";
 #endif
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_gc")]
