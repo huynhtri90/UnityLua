@@ -35,6 +35,7 @@ using NLua.Event;
 using NLua.Method;
 using NLua.Exceptions;
 using NLua.Extensions;
+using AOT;
 
 #if MONOTOUCH
 	using ObjCRuntime;
@@ -67,7 +68,7 @@ namespace NLua
 	 * - removed all Open*Lib() functions 
 	 * - all libs automatically open in the Lua class constructor (just assign nil to unwanted libs)
 	 * */
-	[CLSCompliant(true)]
+	// [CLSCompliant(true)]
 	public class Lua : IDisposable
 	{
 		#region lua debug functions

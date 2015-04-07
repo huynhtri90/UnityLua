@@ -6,10 +6,8 @@ using LuaNativeFunction = KeraLua.LuaNativeFunction;
 
 namespace NLua
 {
-	public static class Luna
+	public static class Import
 	{
-		static LuaNativeFunction PrintFunction;
-		
 		const string LunaPackage = @"
 			_G.ImportFiles = _G.ImportFiles or {};
 			_G.io.readfile = _G.io.readfile or function(name)
@@ -68,9 +66,13 @@ namespace NLua
 				end
 			end
 		";
-		public static void LoadLunaExpand(this Lua lua)
+		public static void LoadImportExpand(this Lua lua)
 		{
-			LuaLib.LuaLDoString(lua.LuaState, LunaPackage);
+			int result = LuaLib.LuaLLoadBuffer(lua.LuaState, LunaPackage, "Import.lua(in Import.cs)");
+			if (result != 0)
+				throw new NotSupportedException("Import.LoadExpand failed");
+			
+			LuaLib.LuaPCall (lua.LuaState, 0, -1, 0);
 		}
 
 		public static object[] CallLunaFunction(this Lua lua, string fileName, string function, params object[] args)

@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using NLua.Method;
 using NLua.Exceptions;
 using NLua.Extensions;
+using AOT;
 
 #if MONOTOUCH
 	using ObjCRuntime;

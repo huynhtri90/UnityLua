@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using NLua.Method;
 using NLua.Extensions;
+using AOT;
 
 #if MONOTOUCH
 	using ObjCRuntime;

@@ -3,6 +3,7 @@ using System.Text;
 using LuaCore  = KeraLua.Lua;
 using LuaState = KeraLua.LuaState;
 using LuaNativeFunction = KeraLua.LuaNativeFunction;
+using AOT;
 
 namespace NLua
 {
