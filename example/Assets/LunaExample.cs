@@ -6,7 +6,6 @@ using NLua;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
-using UnityLua;
 
 namespace X
 {
@@ -18,11 +17,11 @@ namespace X
         {
 			LuaState = new Lua();
 			LuaState.LoadUnityExpand();
-			LuaState.LoadLunaExpand();
+			LuaState.LoadImportExpand();
 			LuaState.LoadCLRPackage("Using");
 
 			LuaState.CallLunaFunction("lunatest.lua", "Start", this.gameObject);
-			UnityLua.Luna.CheckStack(LuaState);
+			LuaState.CheckStack();
         }
 
 		void Update() 
