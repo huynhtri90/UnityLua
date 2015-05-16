@@ -15,6 +15,8 @@ namespace X
 		
         void Start()
         {
+			IL2CPP.Reg(gameObject);
+
 			LuaState = new Lua();
 			LuaState.LoadUnityExpand();
 			LuaState.LoadImportExpand();

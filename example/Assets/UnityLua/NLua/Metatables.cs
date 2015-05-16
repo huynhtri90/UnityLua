@@ -425,10 +425,13 @@ namespace NLua
 					translator.Push (luaState, arr [intIndex]);
 				}
 			} else {
-
+/*
+ *  Because of the il2cpp so disabled search extension method.
+ * 
 				if (!string.IsNullOrEmpty (methodName) && IsExtensionMethodPresent (objType, methodName)) {
 					return GetExtensionMethod (luaState, objType, obj, methodName);
 				}
+*/
 				// Try to use get_Item to index into this .net object
 				var methods = objType.GetMethods ();
 
