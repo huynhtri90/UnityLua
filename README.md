@@ -2,7 +2,7 @@
 
 [NLua](https://github.com/NLua/NLua) for [unity](http://www.unity3d.com/). 
 
-Support il2cpp.(为了防止被裁减，必须确保lua调用的.NET接口需要在C#代码中调用过，对于主要逻辑在C# 中的项目，这并不难)
+Support il2cpp.(可以使用[link.xml](http://docs.unity3d.com/Manual/iphone-playerSizeOptimization.html)避免被裁剪)
 
 # Usage #
 copy `example/Assets/UnityLua` and `example/Assets/Plugins` to you project
