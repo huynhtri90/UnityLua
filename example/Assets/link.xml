@@ -1,14 +1,9 @@
 <linker>
-	<!--- 	
-		<assembly fullname="mscorlib">
-			<type fullname="System.Reflection" preserve="all"/>
-		</assembly>
-
-		<assembly fullname="JsonDotNet">
-			<namespace fullname="Newtonsoft.Json" preserve="all"/>
-		</assembly>     
-	-->		 
 	<assembly fullname="UnityEngine">
-		<type fullname="UnityEngine.Transform" preserve="all"/>
+		<namespace fullname="UnityEngine" preserve="all"/>
 	</assembly>
+	
+	<assembly fullname="Assembly-CSharp">
+		<namespace fullname="NLua" preserve="all"/>
+	</assembly>	
 </linker>
