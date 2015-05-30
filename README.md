@@ -2,7 +2,7 @@
 
 [NLua](https://github.com/NLua/NLua) for [unity](http://www.unity3d.com/). 
 
-Support il2cpp.(可以使用[link.xml](http://docs.unity3d.com/Manual/iphone-playerSizeOptimization.html)避免被裁剪)
+Support il2cpp.(use [link.xml](http://docs.unity3d.com/Manual/iphone-playerSizeOptimization.html) to avoid being clipped.)
 
 # Usage #
 copy `example/Assets/UnityLua` and `example/Assets/Plugins` to you project
