@@ -241,8 +241,8 @@ namespace NLua
 			if (curlev.Length > 0)
 				errLocation = curlev [0].ToString ();
 
-			string message = e as string;
-
+			string message = e.ToString(); 
+			
 			if (message != null) {
 				// Wrap Lua error (just a string) and store the error location
 				e = new LuaScriptException (message, errLocation);
