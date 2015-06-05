@@ -379,6 +379,8 @@ end
 			var caughtExcept = e;
 
 			if (caughtExcept != null) {
+				UnityEngine.Debug.LogException(caughtExcept);
+
 				translator.ThrowError (luaState, caughtExcept);
 				LuaLib.LuaPushNil (luaState);
 				return 1;
