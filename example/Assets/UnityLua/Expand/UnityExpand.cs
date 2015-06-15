@@ -19,6 +19,7 @@ namespace NLua
         public static void LoadUnityExpand(this Lua lua)
         {
             SetPrint(lua);
+			SetLog(lua);
             SetReadFile(lua);
             SetSearcher(lua);
         }
@@ -46,6 +47,15 @@ namespace NLua
             LuaLib.LuaPushStdCallCFunction(lua.LuaState, PrintFunction);
             LuaLib.LuaSetGlobal(lua.LuaState, "print");
         }
+
+		public static void SetLog(Lua lua)
+		{
+			if (PrintFunction == null)
+				PrintFunction = new LuaNativeFunction(PrintWarning);
+			
+			LuaLib.LuaPushStdCallCFunction(lua.LuaState, PrintFunction);
+			LuaLib.LuaSetGlobal(lua.LuaState, "log");
+		}
 
         public static void SetReadFile(Lua lua)
         {
@@ -103,6 +113,36 @@ namespace NLua
             UnityEngine.Debug.Log(sb.ToString());
             return 0;
         }
+
+		
+		[MonoPInvokeCallback (typeof (LuaNativeFunction))]
+		static int PrintWarning(LuaState luaState)
+		{
+			// For each argument we'll 'tostring' it
+			int n = LuaLib.LuaGetTop(luaState);
+			var sb = new StringBuilder("Lua:");
+			
+			LuaLib.LuaGetGlobal(luaState, "tostring");
+			
+			for( int i = 1; i <= n; i++ ) 
+			{
+				LuaLib.LuaPushValue(luaState, -1);  /* function to be called */
+				LuaLib.LuaPushValue(luaState, i);   /* value to print */
+				LuaLib.LuaPCall(luaState, 1, 1, 0);
+				
+				var s = LuaLib.LuaToString(luaState, -1);
+				sb.Append(s);
+				
+				if(i > 1) 
+				{
+					sb.Append("\t");
+				}
+				
+				LuaLib.LuaPop(luaState, 1);  /* pop result */
+			}
+			UnityEngine.Debug.LogWarning(sb.ToString());
+			return 0;
+		}
 
         [MonoPInvokeCallback (typeof (LuaNativeFunction))]
         static int ReadFile(LuaState luaState)
