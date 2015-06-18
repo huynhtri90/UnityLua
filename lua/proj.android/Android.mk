@@ -12,9 +12,6 @@ LOCAL_SRC_FILES := $(wildcard $(LOCAL_PATH)/../src/*.c)
 LOCAL_SRC_FILES += $(wildcard $(LOCAL_PATH)/../src/*.cpp)
 LOCAL_SRC_FILES := $(LOCAL_SRC_FILES:$(LOCAL_PATH)/%=%)
 
-LOCAL_SRC_FILES := $(subst  ../src/lua.c,,$(LOCAL_SRC_FILES)) 
-LOCAL_SRC_FILES := $(subst  ../src/luac.c,,$(LOCAL_SRC_FILES)) 
-
 $(info LOCAL_PATH= $(LOCAL_PATH))
 $(info LOCAL_SRC_FILES= $(LOCAL_SRC_FILES))
 
