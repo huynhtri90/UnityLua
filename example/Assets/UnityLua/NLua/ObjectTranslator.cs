@@ -630,12 +630,15 @@ namespace NLua
 		private void PushNewObject (LuaState luaState, object o, int index, string metatable)
 		{
 			if (metatable == "luaNet_metatable") {
-				// Gets or creates the metatable for the object's type
-				LuaLib.LuaLGetMetatable (luaState, o.GetType ().AssemblyQualifiedName);
+
+                string assemblyQualifiedName = CacheReflection.GetAssemblyQualifiedName(o.GetType());
+
+                // Gets or creates the metatable for the object's type
+                LuaLib.LuaLGetMetatable (luaState, assemblyQualifiedName);
 
 				if (LuaLib.LuaIsNil (luaState, -1)) {
 					LuaLib.LuaSetTop (luaState, -2);
-					LuaLib.LuaLNewMetatable (luaState, o.GetType ().AssemblyQualifiedName);
+					LuaLib.LuaLNewMetatable (luaState, assemblyQualifiedName);
 					LuaLib.LuaPushString (luaState, "cache");
 					LuaLib.LuaNewTable (luaState);
 					LuaLib.LuaRawSet (luaState, -3);

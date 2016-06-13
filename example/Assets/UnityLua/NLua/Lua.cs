@@ -815,7 +815,16 @@ end
 
 		string [] FullPathToArray (string fullPath)
 		{
-			return fullPath.SplitWithEscape ('.', '\\').ToArray ();
+            string[] tmp = CacheReflection.GetFullPathToArrayCache(fullPath);
+
+            if(tmp == null)
+            {
+                tmp = fullPath.SplitWithEscape('.', '\\').ToArray();
+                CacheReflection.SetFullPathToArrayCache(fullPath, tmp);
+                return tmp;
+            }
+
+			return tmp;
 		}
 		/*
 			* Creates a new table as a global variable or as a field

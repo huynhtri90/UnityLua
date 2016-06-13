@@ -28,10 +28,10 @@ namespace KeraLua
 			if (len == 0) 
 				return string.Empty;
 
-			byte [] buffer = new byte [len];
-			System.Runtime.InteropServices.Marshal.Copy (nativeUtf8, buffer, 0, buffer.Length);
+			//byte [] buffer = new byte [len];
+			System.Runtime.InteropServices.Marshal.Copy (nativeUtf8, shareBuffer, 0, len);
 
-			return Encoding.UTF8.GetString (buffer, 0, len);
+			return Encoding.UTF8.GetString (shareBuffer, 0, len);
 		}
 		
 		static private string PointerToString (IntPtr ptr)
@@ -54,9 +54,9 @@ namespace KeraLua
 
 		static private byte [] PointerToBuffer (IntPtr ptr, int length)
 		{
-			byte [] buff = new byte [length];
-			System.Runtime.InteropServices.Marshal.Copy (ptr, buff, 0, length);
-			return buff;
+			//byte [] buff = new byte [length];
+			System.Runtime.InteropServices.Marshal.Copy (ptr, shareBuffer, 0, length);
+			return shareBuffer;
 		}
 
 		public override string ToString ()
@@ -79,11 +79,15 @@ namespace KeraLua
 			// Are the first four bytes "ESC Lua". If yes, than it is a binary chunk.
 			// Didn't check on version of Lua, because it isn't relevant.
 			if (length > 3 && buff [0] == 0x1B && buff [1] == 0x4C && buff [2] == 0x75 && buff [3] == 0x61) {
-				// It is a binary chunk
-				StringBuilder s = new StringBuilder (length);
-				foreach (byte b in buff)
-					s.Append ((char)b);
-				return s.ToString ();
+                // It is a binary chunk
+                stringBuilder.Length = length;
+                //foreach (byte b in buff)
+                //	s.Append ((char)b);
+                for (int i = 0; i < buff.Length; i++)
+                {
+                    stringBuilder.Append((char)buff[i]);
+                }
+				return stringBuilder.ToString ();
 			} else
 #if WSTRING
 #if WINDOWS_PHONE || NETFX_CORE
@@ -97,5 +101,8 @@ namespace KeraLua
 		}
 
 		IntPtr str;
-	}
+        static StringBuilder stringBuilder = new StringBuilder();
+        static byte[] shareBuffer = new byte[4 * 1024 * 1024];
+
+    }
 }

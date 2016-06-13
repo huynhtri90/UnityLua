@@ -304,6 +304,9 @@ namespace NLua.Extensions
     static class CacheReflection
     {
         public static Dictionary<string, MethodInfo[]> SCacheGetMethod = new Dictionary<string, MethodInfo[]>();
+        public static Dictionary<Type, string> SCacheAssemblyQualifiedName = new Dictionary<Type, string>();
+        public static Dictionary<string, string[]> SCacheFullPathToArray = new Dictionary<string, string[]>();
+
 
         public static MethodInfo[] GetMethodInfoCache(this Type t, string name, BindingFlags flags)
         {
@@ -320,5 +323,30 @@ namespace NLua.Extensions
             string key = t.FullName + "_" + name + ((int)flags).ToString();
             SCacheGetMethod[key] = value;
         }
+
+        public static string GetAssemblyQualifiedName(Type type)
+        {
+            if (SCacheAssemblyQualifiedName.ContainsKey(type))
+                return SCacheAssemblyQualifiedName[type];
+
+            string name = type.AssemblyQualifiedName;
+            SCacheAssemblyQualifiedName[type] = name;
+
+            return name;
+        }
+
+        public static string[] GetFullPathToArrayCache(string key)
+        {
+            if (SCacheFullPathToArray.ContainsKey(key))
+                return SCacheFullPathToArray[key];
+
+            return null;
+        }
+
+        public static void SetFullPathToArrayCache(string key, string[] data)
+        {
+            SCacheFullPathToArray[key] = data;
+        }
+
     }
 }

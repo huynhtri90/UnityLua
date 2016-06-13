@@ -57,7 +57,12 @@ namespace NLua
 	 */
 	public class MetaFunctions
 	{
-		public LuaNativeFunction GcFunction { get; private set; }
+        //Global Variables
+        List<object> matParam_ParamList = new List<object>();
+        List<int> matParam_OutList = new List<int>();
+        List<MethodArgs> mathParam_ArgTypes = new List<MethodArgs>();
+
+        public LuaNativeFunction GcFunction { get; private set; }
 		public LuaNativeFunction IndexFunction { get; private set; }
 		public LuaNativeFunction NewIndexFunction { get; private set; }
 		public LuaNativeFunction BaseIndexFunction { get; private set; }
@@ -1241,43 +1246,44 @@ namespace NLua
 			return paramArray;
 
 		}
-		
-		/*
+        
+        /*
 		 * Matches a method against its arguments in the Lua stack. Returns
 		 * if the match was successful. It it was also returns the information
 		 * necessary to invoke the method.
 		 */
-		internal bool MatchParameters (LuaState luaState, MethodBase method, ref MethodCache methodCache)
+        internal bool MatchParameters (LuaState luaState, MethodBase method, ref MethodCache methodCache)
 		{
 			ExtractValue extractValue;
 			bool isMethod = true;
 			var paramInfo = method.GetParameters ();
 			int currentLuaParam = 1;
 			int nLuaParams = LuaLib.LuaGetTop (luaState);
-			var paramList = new List<object> ();
-			var outList = new List<int> ();
-			var argTypes = new List<MethodArgs> ();
 
-			foreach (var currentNetParam in paramInfo) {
+            matParam_ParamList.Clear();
+            matParam_OutList.Clear();
+            mathParam_ArgTypes.Clear();
+
+            foreach (var currentNetParam in paramInfo) {
 #if !SILVERLIGHT
 				if (!currentNetParam.IsIn && currentNetParam.IsOut)  // Skips out params 
 #else
 				if (currentNetParam.IsOut)  // Skips out params
 #endif
 				{					
-					paramList.Add (null);
-					outList.Add (paramList.LastIndexOf (null));
+					matParam_ParamList.Add (null);
+					matParam_OutList.Add (matParam_ParamList.LastIndexOf (null));
 				}  else if (IsTypeCorrect (luaState, currentLuaParam, currentNetParam, out extractValue)) {  // Type checking
 					var value = extractValue (luaState, currentLuaParam);
-					paramList.Add (value);
-					int index = paramList.LastIndexOf (value);
+					matParam_ParamList.Add (value);
+					int index = matParam_ParamList.LastIndexOf (value);
 					var methodArg = new MethodArgs ();
 					methodArg.index = index;
 					methodArg.extractValue = extractValue;
-					argTypes.Add (methodArg);
+					mathParam_ArgTypes.Add (methodArg);
 
 					if (currentNetParam.ParameterType.IsByRef)
-						outList.Add (index);
+						matParam_OutList.Add (index);
 
 					currentLuaParam++;
 				}  // Type does not match, ignore if the parameter is optional
@@ -1292,25 +1298,25 @@ namespace NLua
 					};
 					
 					Array paramArray = TableToArray (extractDelegate, paramArrayType, currentLuaParam, count);
-					paramList.Add (paramArray);
-					int index = paramList.LastIndexOf (paramArray);
+					matParam_ParamList.Add (paramArray);
+					int index = matParam_ParamList.LastIndexOf (paramArray);
 					var methodArg = new MethodArgs ();
 					methodArg.index = index;
 					methodArg.extractValue = extractValue;
 					methodArg.isParamsArray = true;
 					methodArg.paramsArrayType = paramArrayType;
-					argTypes.Add (methodArg);
+					mathParam_ArgTypes.Add (methodArg);
 					 
 
 				} else if (currentLuaParam > nLuaParams) { // Adds optional parameters
 					if (currentNetParam.IsOptional)
-						paramList.Add (currentNetParam.DefaultValue);
+						matParam_ParamList.Add (currentNetParam.DefaultValue);
 					else {
 						isMethod = false;
 						break;
 					}
 				} else if (currentNetParam.IsOptional)
-					paramList.Add (currentNetParam.DefaultValue);
+					matParam_ParamList.Add (currentNetParam.DefaultValue);
 				else {  // No match
 					isMethod = false;
 					break;
@@ -1320,10 +1326,10 @@ namespace NLua
 			if (currentLuaParam != nLuaParams + 1) // Number of parameters does not match
 				isMethod = false;
 			if (isMethod) {
-				methodCache.args = paramList.ToArray ();
+				methodCache.args = matParam_ParamList.ToArray ();
 				methodCache.cachedMethod = method;
-				methodCache.outList = outList.ToArray ();
-				methodCache.argTypes = argTypes.ToArray ();
+				methodCache.outList = matParam_OutList.ToArray ();
+				methodCache.argTypes = mathParam_ArgTypes.ToArray ();
 			}
 			return isMethod;
 		}
