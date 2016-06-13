@@ -38,7 +38,7 @@ namespace NLua
 	internal class ObjectTranslatorPool
 	{
 		private static volatile ObjectTranslatorPool instance = new ObjectTranslatorPool ();		
-		private Dictionary<LuaState, ObjectTranslator> translators = new Dictionary<LuaState, ObjectTranslator>();
+		private Dictionary<Int64, ObjectTranslator> translators = new Dictionary<Int64, ObjectTranslator>();
 		
 		public static ObjectTranslatorPool Instance
 		{
@@ -54,28 +54,36 @@ namespace NLua
 		
 		public void Add (LuaState luaState, ObjectTranslator translator)
 		{
-			translators.Add(luaState , translator);			
+            Int64 key = luaState.state.ToInt64();
+
+            translators.Add(key, translator);			
 		}
 		
 		public ObjectTranslator Find (LuaState luaState)
 		{
-			if (translators.ContainsKey (luaState))
-				return translators [luaState];
+            Int64 key = luaState.state.ToInt64();
+
+            if (translators.ContainsKey (key))
+				return translators [key];
 
 			LuaState main = LuaCore.LuaNetGetMainState (luaState);
 
-			if (translators.ContainsKey (main))
-				return translators [main];
+            Int64 mainKey = main.state.ToInt32();
+
+            if (translators.ContainsKey (mainKey))
+				return translators [mainKey];
 			
 			return null;
 		}
 		
 		public void Remove (LuaState luaState)
 		{
-			if (!translators.ContainsKey (luaState))
+            Int64 key = luaState.state.ToInt64();
+
+            if (!translators.ContainsKey (key))
 				return;
 			
-			translators.Remove (luaState);
+			translators.Remove (key);
 		}
 	}
 }

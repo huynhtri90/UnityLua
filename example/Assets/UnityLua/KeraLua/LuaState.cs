@@ -25,6 +25,6 @@ namespace KeraLua
 			return luastate.state;
 		}
 
-		IntPtr state;
+		public IntPtr state;
 	}
 }

@@ -4,12 +4,16 @@ import("System");
 
 local function Start(gameObject)
 	print('hello', 'world');
-	obj = GameObject('TestRequire_New'); 
 	math.randomseed(os.time())
 end
 
-local function Update(gameObject)
-	gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * math.random(-0.5, 0.5);
+local function Update(gameObject, dt)
+	
+	-- Trying To Read Config
+	min = GlobalConfig.Instance.MoveMin
+	max = GlobalConfig.Instance.MoveMax
+
+	gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * math.random(min, max) * dt;
 end
 
-return {Start = Start, Update = Update,}
+return {Start = Start, Update = Update}

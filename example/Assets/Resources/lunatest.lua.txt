@@ -9,8 +9,13 @@ function Start(gameObject)
 	Lib.Tree(_G);
 end
 
-function Update(gameObject)
-	gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * math.random(-0.5, 0.5);
+function Update(gameObject, dt)
+	
+	-- Trying To Read Config
+	min = GlobalConfig.Instance.MoveMin
+	max = GlobalConfig.Instance.MoveMax
+
+	gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * math.random(min, max) * dt;
 end
 
 function OnGUI(gameObject)

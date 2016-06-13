@@ -26,7 +26,7 @@ namespace X
 
 		void Update() 
 		{
-			LuaState.CallLunaFunction("lunatest.lua", "Update", this.gameObject);
+			LuaState.CallLunaFunction("lunatest.lua", "Update", this.gameObject, Time.deltaTime);
 		}
 
 		void OnGUI() 

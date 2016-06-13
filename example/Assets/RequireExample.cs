@@ -28,7 +28,7 @@ namespace X
 		void Update() 
 		{
 			var startCallback = TestLib["Update"] as LuaFunction;
-			startCallback.Call(this.gameObject);
+			startCallback.Call(this.gameObject, Time.deltaTime);
 		}
 	}
 }

@@ -62,9 +62,24 @@ namespace NLua.Extensions
 	{
 		public static bool HasMethod (this Type t, string name)
 		{
-			var op = t.GetMethods (BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
-			return op.Any (m => m.Name == name);
-		}
+            BindingFlags flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static;
+
+            MethodInfo[] res = CacheReflection.GetMethodInfoCache(t, name, flags);
+
+            if(res == null)
+            {
+                res = t.GetMethods(flags).Where(m => m.Name == name).ToArray();
+                CacheReflection.UpdateMethodInfoCache(t, name, flags, res);
+            }
+
+            for (int i = 0; i < res.Length; i++)
+            {
+                if (res[i].Name == name)
+                    return true;
+            }
+
+            return false;
+        }
 
 		public static bool HasAdditionOpertator (this Type t)
 		{
@@ -139,7 +154,14 @@ namespace NLua.Extensions
 
 		public static MethodInfo [] GetMethods (this Type t, string name, BindingFlags flags)
 		{
-			return t.GetMethods (flags).Where (m => m.Name == name).ToArray ();
+            MethodInfo[] res = CacheReflection.GetMethodInfoCache(t, name, flags);
+            if (res != null)
+                return res;
+
+            res = t.GetMethods(flags).Where(m => m.Name == name).ToArray();
+
+            CacheReflection.UpdateMethodInfoCache(t, name, flags, res);
+            return res;
 		}
 
 		public static MethodInfo [] GetExtensionMethods (this Type type, IEnumerable<Assembly> assemblies = null)
@@ -278,4 +300,25 @@ namespace NLua.Extensions
 			yield return input.Substring (start);
 		}
 	}
+
+    static class CacheReflection
+    {
+        public static Dictionary<string, MethodInfo[]> SCacheGetMethod = new Dictionary<string, MethodInfo[]>();
+
+        public static MethodInfo[] GetMethodInfoCache(this Type t, string name, BindingFlags flags)
+        {
+            string key = t.FullName + "_" + name + ((int)flags).ToString();
+
+            if (SCacheGetMethod.ContainsKey(key))
+                return SCacheGetMethod[key];
+
+            return null;
+        }
+
+        public static void UpdateMethodInfoCache(this Type t, string name, BindingFlags flags, MethodInfo[] value)
+        {
+            string key = t.FullName + "_" + name + ((int)flags).ToString();
+            SCacheGetMethod[key] = value;
+        }
+    }
 }
