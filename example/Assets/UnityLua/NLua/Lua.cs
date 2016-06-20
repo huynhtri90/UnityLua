@@ -1134,10 +1134,24 @@ end
 			return f;
 		}
 
-		/*
+        /*
+		 * Registers an object's method as a Lua function (global or table field)
+		 * The method may have any signature
+		 */
+        public LuaFunction RegisterFunction(string path, LuaNativeFunction function)
+        {
+            int oldTop = LuaLib.LuaGetTop(luaState);
+            translator.Push(luaState, function);
+            this[path] = translator.GetObject(luaState, -1);
+            var f = GetFunction(path);
+            LuaLib.LuaSetTop(luaState, oldTop);
+            return f;
+        }
+
+        /*
 		 * Compares the two values referenced by ref1 and ref2 for equality
 		 */
-		internal bool CompareRef (int ref1, int ref2)
+        internal bool CompareRef (int ref1, int ref2)
 		{
 			int top = LuaLib.LuaGetTop (luaState);
 			LuaLib.LuaGetRef (luaState, ref1);

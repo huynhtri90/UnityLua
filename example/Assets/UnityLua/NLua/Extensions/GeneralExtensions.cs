@@ -349,4 +349,25 @@ namespace NLua.Extensions
         }
 
     }
+
+    static class CacheBuffer
+    {
+        public static Dictionary<int, byte[]> ByteEncoder = new Dictionary<int, byte[]>();
+
+        public static byte[] EncodeStringToByte(string input)
+        {
+            int hashCode = input.GetHashCode();
+            if (ByteEncoder.ContainsKey(hashCode))
+            {
+                return ByteEncoder[hashCode];
+            }
+
+            byte[] tmp = KeraLua.Lua.DefaultEncoding.GetBytes(input);
+            ByteEncoder[hashCode] = tmp;
+
+            return tmp;
+
+
+        }
+    }
 }

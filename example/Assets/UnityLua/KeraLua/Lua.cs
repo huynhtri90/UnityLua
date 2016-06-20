@@ -265,7 +265,7 @@ namespace KeraLua
 
 		public static void LuaPushString (IntPtr luaState, string str)
 		{
-			var buff = DefaultEncoding.GetBytes(str);
+			byte[] buff = NLua.Extensions.CacheBuffer.EncodeStringToByte(str);
 			NativeMethods.lua_pushlstring (luaState, buff, (uint)buff.Length);
 		}
 

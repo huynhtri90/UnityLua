@@ -1,0 +1,32 @@
+
+local function Start(udid)
+	print('hello', 'world', udid);
+	math.randomseed(os.time())
+
+	name = getContextObjProp(udid, 1)
+	print("Name: ", name)
+	tag = getContextObjProp(udid, 2)
+	print("Tag: ", tag)
+
+	math.randomseed(os.time())
+end
+
+local function Update(udid, dt)
+	
+	-- Trying To Read Config
+	-- min = GlobalConfig.Instance.MoveMin
+	-- max = GlobalConfig.Instance.MoveMax
+
+	-- gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * math.random(min, max) * dt;
+
+end
+
+local function Update1(udid, dt)
+	
+	ran = math.random(-1,1)
+	x,y,z = getContextObjProp(udid, 3)
+	
+	moveTo(udid, x, y + ran, z)
+end
+
+return {Start = Start, Update = Update, Update1 = Update1}
